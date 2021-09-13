@@ -1,0 +1,5 @@
+apiVersion: v2
+name: bootstrap
+description: Creates an Argo CD application that boostraps all other Argo CD apps
+type: application
+version: 0.1.0

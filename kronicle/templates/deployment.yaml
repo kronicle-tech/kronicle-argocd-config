@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kronicle-service
+  labels:
+    app: kronicle-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kronicle-service
+  template:
+    metadata:
+      labels:
+        app: kronicle-service
+    spec:
+      containers:
+        - name: kronicle-service
+          image: ghcr.io/kronicle-tech/kronicle-service:0.1.14
+          ports:
+            - containerPort: 8090
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kronicle-app
+  labels:
+    app: kronicle-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kronicle-app
+  template:
+    metadata:
+      labels:
+        app: kronicle-app
+    spec:
+      containers:
+        - name: kronicle-app
+          image: ghcr.io/kronicle-tech/kronicle-app:0.1.14
+          ports:
+            - containerPort: 3000

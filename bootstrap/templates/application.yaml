@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kronicle
+  namespace: kronicle
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # The project the application belongs to.
+  project: kronicle
+
+  # Source of the application manifests
+  source:
+    repoURL: https://github.com/kronicle-tech/kronicle-argo-cd-config.git
+    targetRevision: HEAD
+    path: kronicle
+
+    helm:
+      valueFiles:
+        - values-prod.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kronicle
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
