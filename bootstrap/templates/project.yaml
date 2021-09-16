@@ -10,7 +10,7 @@ spec:
   description: Project for the Kronicle live demo
 
   sourceRepos:
-    - 'https://github.com/kronicle-tech/kronicle-argo-cd-config.git'
+    - 'https://github.com/kronicle-tech/kronicle-argocd-config.git'
 
   destinations:
     - namespace: kronicle
