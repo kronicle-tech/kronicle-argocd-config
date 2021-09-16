@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: kronicle
-  namespace: argocd
+  namespace: argocd   # namespace must be "argocd"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
