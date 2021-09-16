@@ -39,5 +39,10 @@ spec:
       containers:
         - name: kronicle-app
           image: ghcr.io/kronicle-tech/kronicle-app:0.1.14
+          env:
+            - name: CLIENT_SIDE_SERVICE_BASE_URL
+              value: https://demo-service.kronicle.tech
+            - name: SERVER_SIDE_SERVICE_BASE_URL
+              value: http://kronicle-service.kronicle.svc.cluster.local
           ports:
             - containerPort: 3000
