@@ -11,7 +11,7 @@ spec:
 
   # Source of the application manifests
   source:
-    repoURL: https://github.com/kronicle-tech/kronicle-argo-cd-config.git
+    repoURL: https://github.com/kronicle-tech/kronicle-argocd-config.git
     targetRevision: HEAD
     path: kronicle
 
