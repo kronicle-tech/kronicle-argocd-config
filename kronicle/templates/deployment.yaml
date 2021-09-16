@@ -17,6 +17,13 @@ spec:
       containers:
         - name: kronicle-service
           image: ghcr.io/kronicle-tech/kronicle-service:0.1.14
+          env:
+            - name: BITBUCKET_SERVER_HOSTS_0_BASE_URL
+              value: https://example.com
+            - name: BITBUCKET_SERVER_HOSTS_0_USERNAME
+              value: example
+            - name: BITBUCKET_SERVER_HOSTS_0_PASSWORD
+              value: example
           ports:
             - containerPort: 8090
 ---
