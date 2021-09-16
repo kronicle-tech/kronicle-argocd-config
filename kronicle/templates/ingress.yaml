@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kronicle-app
+  namespace: kronicle
+  annotations:
+    kubernetes.io/ingress.class: "public"   # The "public" ingress class is specific to microk8s
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+spec:
+  rules:
+    - host: demo.kronicle.tech
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kronicle-app
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kronicle-service
+  namespace: kronicle
+  annotations:
+    kubernetes.io/ingress.class: "public"   # The "public" ingress class is specific to microk8s
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+spec:
+  rules:
+    - host: demo-service.kronicle.tech
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kronicle-service
+                port:
+                  number: 80
