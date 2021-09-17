@@ -31,3 +31,8 @@ spec:
 
   orphanedResources:
     warn: true
+    ignore:
+      - kind: Secret
+        name: kronicle-app-tls
+      - kind: Secret
+        name: kronicle-service-tls
