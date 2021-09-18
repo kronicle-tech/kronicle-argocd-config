@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: kronicle-service
-          image: ghcr.io/kronicle-tech/kronicle-service:0.1.14
+          image: ghcr.io/kronicle-tech/kronicle-service:{{ .Values.kronicleServiceImageTag }}
           env:
             - name: BITBUCKET_SERVER_HOSTS_0_BASE_URL
               value: https://example.com
@@ -45,7 +45,7 @@ spec:
     spec:
       containers:
         - name: kronicle-app
-          image: ghcr.io/kronicle-tech/kronicle-app:0.1.14
+          image: ghcr.io/kronicle-tech/kronicle-app:{{ .Values.kronicleAppImageTag }}
           env:
             - name: CLIENT_SIDE_SERVICE_BASE_URL
               value: https://demo-service.kronicle.tech
