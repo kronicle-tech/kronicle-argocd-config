@@ -16,7 +16,8 @@ spec:
     - namespace: external-secrets
       server: https://kubernetes.default.svc
 
-  clusterResourceBlacklist:
+  # Allow all cluster-scoped resources to be created
+  clusterResourceWhitelist:
     - group: '*'
       kind: '*'
 
