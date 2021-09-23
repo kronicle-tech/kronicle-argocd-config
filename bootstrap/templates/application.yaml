@@ -17,10 +17,10 @@ spec:
 
     helm:
       parameters:
-        - name: "external-secrets.aws-region"
-          value: "{{ .Values.external-secrets.aws-region }}"
-        - name: "external-secrets.aws-role"
-          value: "{{ .Values.external-secrets.aws-role }}"
+        - name: "externalSecrets.awsRegion"
+          value: "{{ .Values.externalSecrets.awsRegion }}"
+        - name: "externalSecrets.awsRole"
+          value: "{{ .Values.externalSecrets.awsRole }}"
 
       valueFiles:
         - values-prod.yaml
