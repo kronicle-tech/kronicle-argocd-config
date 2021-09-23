@@ -18,12 +18,16 @@ spec:
         - name: kronicle-service
           image: ghcr.io/kronicle-tech/kronicle-service:{{ .Values.kronicleServiceImageTag }}
           env:
-            - name: BITBUCKET_SERVER_HOSTS_0_BASE_URL
-              value: https://example.com
-            - name: BITBUCKET_SERVER_HOSTS_0_USERNAME
-              value: example
-            - name: BITBUCKET_SERVER_HOSTS_0_PASSWORD
-              value: example
+            - name: REPO_FINDERS_GITHUB_USERS_O_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: kronicle-service-config
+                  key: github-repo-finder-username
+            - name: REPO_FINDERS_GITHUB_USERS_O_PERSONAL_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: kronicle-service-config
+                  key: github-repo-finder-personal-access-token
           ports:
             - containerPort: 8090
 ---

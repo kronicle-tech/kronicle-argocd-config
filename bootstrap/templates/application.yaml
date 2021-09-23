@@ -16,6 +16,12 @@ spec:
     path: external-secrets
 
     helm:
+      parameters:
+        - name: "external-secrets.aws-region"
+          value: {{ .Values.external-secrets.aws-region }}
+        - name: "external-secrets.aws-role"
+          value: {{ .Values.external-secrets.aws-role }}
+
       valueFiles:
         - values-prod.yaml
 
