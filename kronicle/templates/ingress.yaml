@@ -7,7 +7,7 @@ metadata:
     kubernetes.io/ingress.class: "public"   # The "public" ingress class is specific to microk8s
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    cert-manager.io/cluster-issuer: "kronicle-tech-letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "kronicle-tech-zerossl"
 spec:
   rules:
     - host: demo-service.kronicle.tech
@@ -34,7 +34,7 @@ metadata:
     kubernetes.io/ingress.class: "public"   # The "public" ingress class is specific to microk8s
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    cert-manager.io/cluster-issuer: "kronicle-tech-letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "kronicle-tech-zerossl"
 spec:
   rules:
     - host: demo.kronicle.tech
