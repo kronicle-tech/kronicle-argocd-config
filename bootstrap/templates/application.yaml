@@ -13,7 +13,7 @@ spec:
 
   # Source of the application manifests
   source:
-    repoURL: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    repoURL: {{ default $application.repoURL "https://github.com/kronicle-tech/kronicle-argocd-config.git" }}
     targetRevision: "{{ default $application.targetRevision "HEAD" }}"
     path: {{ $name }}
   {{- if $application.chart }}
