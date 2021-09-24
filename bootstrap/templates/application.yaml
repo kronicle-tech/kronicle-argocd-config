@@ -13,8 +13,8 @@ spec:
 
   # Source of the application manifests
   source:
-    repoURL: {{ default $application.repoURL "https://github.com/kronicle-tech/kronicle-argocd-config.git" }}
-    targetRevision: "{{ default $application.targetRevision "HEAD" }}"
+    repoURL: {{ $application.repoURL | default "https://github.com/kronicle-tech/kronicle-argocd-config.git" }}
+    targetRevision: "{{ $application.targetRevision | default "HEAD" }}"
     path: {{ $name }}
   {{- if $application.chart }}
     chart: {{ $application.chart }}
@@ -35,7 +35,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
   {{- if (default $application.useNamespace true) }}
-    namespace: {{ default $application.namespace $name }}
+    namespace: {{ $application.namespace | default $name }}
   {{- end }}
 
   syncPolicy:
