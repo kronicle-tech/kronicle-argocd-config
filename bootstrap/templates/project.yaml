@@ -15,7 +15,11 @@ spec:
     - {{ default $application.repoURL "https://github.com/kronicle-tech/kronicle-argocd-config.git" }}
 
   destinations:
-    - namespace: {{ $name }}
+  {{- if (default $application.useNamespace true) }}
+    - namespace: {{ default $application.namespace $name }}
+  {{- else }}
+    - namespace: '*'
+  {{- end }}
       server: https://kubernetes.default.svc
 
   {{- if $application.clusterResources }}

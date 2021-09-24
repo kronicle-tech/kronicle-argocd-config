@@ -34,7 +34,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-  {{- if (default $application.useNamespace true)}}
+  {{- if (default $application.useNamespace true) }}
     namespace: {{ default $application.namespace $name }}
   {{- end }}
 
