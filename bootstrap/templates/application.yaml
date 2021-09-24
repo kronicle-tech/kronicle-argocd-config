@@ -31,7 +31,9 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
+{{- if (default $project.useNamespace true)}}
     namespace: {{ $name }}
+{{- end }}
 
   syncPolicy:
     automated:

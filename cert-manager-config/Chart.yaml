@@ -1,0 +1,5 @@
+apiVersion: v2
+name: cert-manager
+description: Configures cert-manager https://cert-manager.io
+type: application
+version: 0.1.0
