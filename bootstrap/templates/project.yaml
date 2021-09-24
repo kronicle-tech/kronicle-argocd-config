@@ -12,7 +12,7 @@ spec:
   description: Project for {{ $name }}
 
   sourceRepos:
-    - 'https://github.com/kronicle-tech/kronicle-argocd-config.git'
+    - {{ default $application.repoURL "https://github.com/kronicle-tech/kronicle-argocd-config.git" }}
 
   destinations:
     - namespace: {{ $name }}
