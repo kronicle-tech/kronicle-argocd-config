@@ -1,4 +1,4 @@
-{{- range $name, $project := .Values.projects }}
+{{- range $name, $application := .Values.applications }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
@@ -18,7 +18,7 @@ spec:
     - namespace: {{ $name }}
       server: https://kubernetes.default.svc
 
-  {{- if $project.clusterResources }}
+  {{- if $application.clusterResources }}
   # Allow all cluster-scoped resources to be created
   clusterResourceWhitelist:
     - group: '*'
@@ -40,9 +40,9 @@ spec:
 
   orphanedResources:
     warn: true
-  {{- if $project.ignoredOrphanedResources }}
+  {{- if $application.ignoredOrphanedResources }}
     ignore:
-    {{- range $project.ignoredOrphanedResources }}
+    {{- range $application.ignoredOrphanedResources }}
       - kind: {{ .kind }}
         name: {{ .name }}
     {{- end }}

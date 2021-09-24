@@ -1,4 +1,4 @@
-projects:
+applications:
   external-secrets:
     clusterResources: true
     repoURL: https://charts.external-secrets.io

@@ -1,4 +1,4 @@
-{{- range $name, $project := .Values.projects }}
+{{- range $name, $application := .Values.applications }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -14,16 +14,16 @@ spec:
   # Source of the application manifests
   source:
     repoURL: https://github.com/kronicle-tech/kronicle-argocd-config.git
-    targetRevision: "{{ default $project.targetRevision "HEAD" }}"
+    targetRevision: "{{ default $application.targetRevision "HEAD" }}"
     path: {{ $name }}
-  {{- if $project.chart }}
-    chart: {{ $project.chart }}
+  {{- if $application.chart }}
+    chart: {{ $application.chart }}
   {{- end }}
 
     helm:
-  {{- if $project.helmParameters }}
+  {{- if $application.helmParameters }}
       parameters:
-    {{- range $key, $value := $project.helmParameters }}
+    {{- range $key, $value := $application.helmParameters }}
         - name: "{{ $key }}"
           value: "{{ $value }}"
     {{- end }}
@@ -34,8 +34,8 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-  {{- if (default $project.useNamespace true)}}
-    namespace: {{ default $project.namespace $name }}
+  {{- if (default $application.useNamespace true)}}
+    namespace: {{ default $application.namespace $name }}
   {{- end }}
 
   syncPolicy:
