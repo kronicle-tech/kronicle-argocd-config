@@ -15,7 +15,7 @@ spec:
     - {{ $application.repoURL | default "https://github.com/kronicle-tech/kronicle-argocd-config.git" }}
 
   destinations:
-  {{- if (default $application.useNamespace true) }}
+  {{- if ($application.useNamespace | default true) }}
     - namespace: {{ $application.namespace | default $name }}
   {{- else }}
     - namespace: '*'
