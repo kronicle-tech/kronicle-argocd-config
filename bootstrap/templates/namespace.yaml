@@ -1,7 +1,9 @@
 {{- range $name, $project := .Values.projects }}
+{{- if (default $project.useNamespace true)}}
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
   name: {{ $name }}
+{{- end }}
 {{- end }}

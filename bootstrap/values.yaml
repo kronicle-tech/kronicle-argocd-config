@@ -1,7 +1,28 @@
 projects:
   external-secrets:
     clusterResources: true
+    repoURL: https://charts.external-secrets.io
+    # Run the following commands to find the latest chart version:
+    # $ helm repo add external-secrets https://charts.external-secrets.io
+    # $ helm search repo external-secrets
+    targetRevision: 0.3.5
+    chart: external-secrets
+    helmParameters:
+      installCRDs: 'true'
+  external-secrets-config:
+    clusterResources: true
   cert-manager:
+    clusterResources: true
+    useNamespace: false
+    repoURL: https://charts.jetstack.io
+    # Run the following commands to find the latest chart version:
+    # $ helm repo add jetstack https://charts.external-secrets.io
+    # $ helm search repo cert-manager
+    targetRevision: v1.5.3
+    chart: cert-manager
+    helmParameters:
+      installCRDs: 'true'
+  cert-manager-config:
     clusterResources: true
   argocd:
     clusterResources: false
