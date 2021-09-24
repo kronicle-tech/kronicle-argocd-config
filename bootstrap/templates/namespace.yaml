@@ -1,5 +1,5 @@
 {{- range $name, $application := .Values.applications }}
-  {{- if (default $application.useNamespace true)}}
+  {{- if (default $application.useNamespace true) }}
 ---
 apiVersion: v1
 kind: Namespace
