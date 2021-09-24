@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/whitelist-source-range: "{{ .Values.ipAllowList }}"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    cert-manager.io/cluster-issuer: "zerossl"
+#    cert-manager.io/cluster-issuer: "zerossl"
 spec:
   rules:
     - host: argocd.{{ .Values.internalDomain }}
@@ -24,4 +24,5 @@ spec:
   tls:
     - hosts:
         - argocd.{{ .Values.internalDomain }}
-      secretName: argocd-server-http-tls
+#      secretName: argocd-server-http-tls
+      secretName: argocd-secret
