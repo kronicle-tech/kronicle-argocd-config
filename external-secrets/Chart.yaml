@@ -1,5 +1,5 @@
 apiVersion: v2
-name: kronicle
+name: external-secrets
 description: Deploys Helm chart for external-secrets https://external-secrets.io
 type: application
 version: 0.1.0

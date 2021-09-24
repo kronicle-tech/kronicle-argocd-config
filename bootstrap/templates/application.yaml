@@ -1,67 +1,41 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: external-secrets
-  namespace: argocd   # namespace must be "argocd"
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  # The project the application belongs to.
-  project: external-secrets
-
-  # Source of the application manifests
-  source:
-    repoURL: https://github.com/kronicle-tech/kronicle-argocd-config.git
-    targetRevision: HEAD
-    path: external-secrets
-
-    helm:
-      valueFiles:
-        - values-prod.yaml
-
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: external-secrets
-
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-      allowEmpty: false
+{{- range $name, $project := .Values.projects }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kronicle
+  name: {{ $name }}
   namespace: argocd   # namespace must be "argocd"
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   # The project the application belongs to.
-  project: kronicle
+  project: {{ $name }}
 
   # Source of the application manifests
   source:
     repoURL: https://github.com/kronicle-tech/kronicle-argocd-config.git
     targetRevision: HEAD
-    path: kronicle
+    path: {{ $name }}
 
     helm:
+{{- if $project.helmParameters }}
       parameters:
-        - name: "externalSecrets.awsRegion"
-          value: "{{ .Values.externalSecrets.awsRegion }}"
-        - name: "externalSecrets.awsRole"
-          value: "{{ .Values.externalSecrets.awsRole }}"
+  {{- range $key, $value := $project.helmParameters }}
+        - name: "{{ $key }}"
+          value: "{{ $value }}"
+  {{- end }}
+{{- end }}
 
       valueFiles:
         - values-prod.yaml
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: kronicle
+    namespace: {{ $name }}
 
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
       allowEmpty: false
+{{- end }}
