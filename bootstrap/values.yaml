@@ -11,6 +11,7 @@ projects:
       installCRDs: 'true'
   external-secrets-config:
     clusterResources: true
+    namespace: external-secrets
   cert-manager:
     clusterResources: true
     useNamespace: false
@@ -24,6 +25,7 @@ projects:
       installCRDs: 'true'
   cert-manager-config:
     clusterResources: true
+    namespace: cert-manager
   argocd:
     clusterResources: false
   kronicle:

@@ -14,26 +14,29 @@ spec:
   # Source of the application manifests
   source:
     repoURL: https://github.com/kronicle-tech/kronicle-argocd-config.git
-    targetRevision: HEAD
+    targetRevision: "{{ default $project.targetRevision "HEAD" }}"
     path: {{ $name }}
+  {{- if $project.chart }}
+    chart: {{ $project.chart }}
+  {{- end }}
 
     helm:
-{{- if $project.helmParameters }}
+  {{- if $project.helmParameters }}
       parameters:
-  {{- range $key, $value := $project.helmParameters }}
+    {{- range $key, $value := $project.helmParameters }}
         - name: "{{ $key }}"
           value: "{{ $value }}"
+    {{- end }}
   {{- end }}
-{{- end }}
 
       valueFiles:
         - values-prod.yaml
 
   destination:
     server: https://kubernetes.default.svc
-{{- if (default $project.useNamespace true)}}
-    namespace: {{ $name }}
-{{- end }}
+  {{- if (default $project.useNamespace true)}}
+    namespace: {{ default $project.namespace $name }}
+  {{- end }}
 
   syncPolicy:
     automated:

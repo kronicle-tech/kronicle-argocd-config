@@ -18,16 +18,16 @@ spec:
     - namespace: {{ $name }}
       server: https://kubernetes.default.svc
 
-{{- if $project.clusterResources }}
+  {{- if $project.clusterResources }}
   # Allow all cluster-scoped resources to be created
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
-{{- else }}
+  {{- else }}
   clusterResourceBlacklist:
     - group: '*'
       kind: '*'
-{{- end }}
+  {{- end }}
 
   # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
   namespaceResourceBlacklist:
@@ -40,11 +40,11 @@ spec:
 
   orphanedResources:
     warn: true
-{{- if $project.ignoredOrphanedResources }}
+  {{- if $project.ignoredOrphanedResources }}
     ignore:
-  {{- range $project.ignoredOrphanedResources }}
+    {{- range $project.ignoredOrphanedResources }}
       - kind: {{ .kind }}
         name: {{ .name }}
+    {{- end }}
   {{- end }}
-{{- end }}
 {{- end }}
