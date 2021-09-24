@@ -1,59 +1,33 @@
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: external-secrets
-  namespace: argocd   # namespace must be "argocd"
-  # Finalizer that ensures that project is not deleted until it is not referenced by any application
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  description: Project for external-secrets https://external-secrets.io
-
-  sourceRepos:
-    - 'https://github.com/kronicle-tech/kronicle-argocd-config.git'
-
-  destinations:
-    - namespace: external-secrets
-      server: https://kubernetes.default.svc
-
-  # Allow all cluster-scoped resources to be created
-  clusterResourceWhitelist:
-    - group: '*'
-      kind: '*'
-
-  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
-  namespaceResourceBlacklist:
-    - group: ''
-      kind: ResourceQuota
-    - group: ''
-      kind: LimitRange
-    - group: ''
-      kind: NetworkPolicy
-
-  orphanedResources:
-    warn: true
+{{- range $name, $project := .Values.projects }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: kronicle
+  name: {{ $name }}
   namespace: argocd   # namespace must be "argocd"
   # Finalizer that ensures that project is not deleted until it is not referenced by any application
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  description: Project for the Kronicle live demo
+  description: Project for {{ $name }}
 
   sourceRepos:
     - 'https://github.com/kronicle-tech/kronicle-argocd-config.git'
 
   destinations:
-    - namespace: kronicle
+    - namespace: {{ $name }}
       server: https://kubernetes.default.svc
 
+{{- if $project.clusterResources }}
+  # Allow all cluster-scoped resources to be created
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+{{- else }}
   clusterResourceBlacklist:
     - group: '*'
       kind: '*'
+{{- end }}
 
   # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
   namespaceResourceBlacklist:
@@ -66,8 +40,11 @@ spec:
 
   orphanedResources:
     warn: true
+{{- if $project.ignoredOrphanedResources }}
     ignore:
-      - kind: Secret
-        name: kronicle-app-tls
-      - kind: Secret
-        name: kronicle-service-tls
+  {{- range $project.ignoredOrphanedResources }}
+      - kind: {{ .kind }}
+        name: {{ .name }}
+  {{- end }}
+{{- end }}
+{{- end }}
