@@ -1,9 +1,0 @@
-{{- range $name, $application := .Values.applications }}
-  {{- if ($application.useNamespace | default true) }}
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: {{ $application.namespace | default $name }}
-  {{- end }}
-{{- end }}
