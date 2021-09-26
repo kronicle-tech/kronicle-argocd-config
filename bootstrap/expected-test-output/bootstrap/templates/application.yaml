@@ -31,6 +31,8 @@ spec:
       prune: false
       selfHeal: true
       allowEmpty: false
+    syncOptions:
+      - CreateNamespace=true
 ---
 # Source: bootstrap/templates/application.yaml
 apiVersion: argoproj.io/v1alpha1
@@ -70,6 +72,8 @@ spec:
       prune: false
       selfHeal: true
       allowEmpty: false
+    syncOptions:
+      - CreateNamespace=false
 ---
 # Source: bootstrap/templates/application.yaml
 apiVersion: argoproj.io/v1alpha1
@@ -103,6 +107,8 @@ spec:
       prune: false
       selfHeal: true
       allowEmpty: false
+    syncOptions:
+      - CreateNamespace=false
 ---
 # Source: bootstrap/templates/application.yaml
 apiVersion: argoproj.io/v1alpha1
@@ -140,6 +146,8 @@ spec:
       prune: false
       selfHeal: true
       allowEmpty: false
+    syncOptions:
+      - CreateNamespace=false
 ---
 # Source: bootstrap/templates/application.yaml
 apiVersion: argoproj.io/v1alpha1
@@ -177,3 +185,5 @@ spec:
       prune: false
       selfHeal: true
       allowEmpty: false
+    syncOptions:
+      - CreateNamespace=false

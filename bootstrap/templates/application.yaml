@@ -46,4 +46,6 @@ spec:
       prune: false
       selfHeal: true
       allowEmpty: false
+    syncOptions:
+      - CreateNamespace={{ $application.createNamespace | default "false" }}
 {{- end }}
