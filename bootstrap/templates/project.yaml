@@ -52,7 +52,7 @@ spec:
       kind: NetworkPolicy
 
   orphanedResources:
-    warn: true
+    warn: false
   {{- if $application.ignoredOrphanedResources }}
     ignore:
     {{- range $application.ignoredOrphanedResources }}

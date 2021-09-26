@@ -28,21 +28,10 @@ applications:
     chart: cert-manager
     helmParameters:
       installCRDs: 'true'
-    ignoredOrphanedResources:
-      - kind: Secret
-        name: cert-manager-webhook-ca
   cert-manager-config:
     clusterResources: true
     namespace: cert-manager
-    ignoredOrphanedResources:
-      - kind: Secret
-        name: cert-manager-webhook-ca
   kronicle:
     clusterResources: false
     createNamespace: true
     namespace: kronicle
-    ignoredOrphanedResources:
-      - kind: Secret
-        name: kronicle-app-tls
-      - kind: Secret
-        name: kronicle-service-tls
