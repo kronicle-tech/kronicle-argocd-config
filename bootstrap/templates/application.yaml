@@ -15,9 +15,10 @@ spec:
   source:
     repoURL: {{ $application.repoURL | default "https://github.com/kronicle-tech/kronicle-argocd-config.git" }}
     targetRevision: "{{ $application.targetRevision | default "HEAD" }}"
-    path: {{ $name }}
   {{- if $application.chart }}
     chart: {{ $application.chart }}
+  {{- else }}
+    path: {{ $name }}
   {{- end }}
 
     helm:
