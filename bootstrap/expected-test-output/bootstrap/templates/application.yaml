@@ -1,0 +1,206 @@
+---
+# Source: bootstrap/templates/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd   # namespace must be "argocd"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # The project the application belongs to.
+  project: argocd
+
+  # Source of the application manifests
+  source:
+    repoURL: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    targetRevision: "HEAD"
+    path: argocd
+
+    helm:
+
+      valueFiles:
+        - values-prod.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+---
+# Source: bootstrap/templates/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd   # namespace must be "argocd"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # The project the application belongs to.
+  project: cert-manager
+
+  # Source of the application manifests
+  source:
+    repoURL: https://charts.jetstack.io
+    targetRevision: "v1.5.3"
+    path: cert-manager
+    chart: cert-manager
+
+    helm:
+      parameters:
+        - name: "installCRDs"
+          value: "true"
+
+      valueFiles:
+        - values-prod.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+---
+# Source: bootstrap/templates/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager-config
+  namespace: argocd   # namespace must be "argocd"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # The project the application belongs to.
+  project: cert-manager-config
+
+  # Source of the application manifests
+  source:
+    repoURL: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    targetRevision: "HEAD"
+    path: cert-manager-config
+
+    helm:
+
+      valueFiles:
+        - values-prod.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+---
+# Source: bootstrap/templates/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-secrets
+  namespace: argocd   # namespace must be "argocd"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # The project the application belongs to.
+  project: external-secrets
+
+  # Source of the application manifests
+  source:
+    repoURL: https://charts.external-secrets.io
+    targetRevision: "0.3.5"
+    path: external-secrets
+    chart: external-secrets
+
+    helm:
+      parameters:
+        - name: "installCRDs"
+          value: "true"
+
+      valueFiles:
+        - values-prod.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: external-secrets
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+---
+# Source: bootstrap/templates/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-secrets-config
+  namespace: argocd   # namespace must be "argocd"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # The project the application belongs to.
+  project: external-secrets-config
+
+  # Source of the application manifests
+  source:
+    repoURL: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    targetRevision: "HEAD"
+    path: external-secrets-config
+
+    helm:
+
+      valueFiles:
+        - values-prod.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: external-secrets
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+---
+# Source: bootstrap/templates/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kronicle
+  namespace: argocd   # namespace must be "argocd"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # The project the application belongs to.
+  project: kronicle
+
+  # Source of the application manifests
+  source:
+    repoURL: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    targetRevision: "HEAD"
+    path: kronicle
+
+    helm:
+
+      valueFiles:
+        - values-prod.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kronicle
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false

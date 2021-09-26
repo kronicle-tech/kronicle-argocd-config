@@ -1,0 +1,213 @@
+---
+# Source: bootstrap/templates/project.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: argocd
+  namespace: argocd   # namespace must be "argocd"
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Project for argocd
+
+  sourceRepos:
+    - https://github.com/kronicle-tech/kronicle-argocd-config.git
+
+  destinations:
+    - namespace: argocd
+      server: https://kubernetes.default.svc
+  clusterResourceBlacklist:
+    - group: '*'
+      kind: '*'
+
+  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+
+  orphanedResources:
+    warn: true
+---
+# Source: bootstrap/templates/project.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: cert-manager
+  namespace: argocd   # namespace must be "argocd"
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Project for cert-manager
+
+  sourceRepos:
+    - https://charts.jetstack.io
+
+  destinations:
+    - namespace: cert-manager
+      server: https://kubernetes.default.svc
+  # Allow all cluster-scoped resources to be created
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+
+  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+
+  orphanedResources:
+    warn: true
+---
+# Source: bootstrap/templates/project.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: cert-manager-config
+  namespace: argocd   # namespace must be "argocd"
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Project for cert-manager-config
+
+  sourceRepos:
+    - https://github.com/kronicle-tech/kronicle-argocd-config.git
+
+  destinations:
+    - namespace: cert-manager
+      server: https://kubernetes.default.svc
+  # Allow all cluster-scoped resources to be created
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+
+  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+
+  orphanedResources:
+    warn: true
+---
+# Source: bootstrap/templates/project.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: external-secrets
+  namespace: argocd   # namespace must be "argocd"
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Project for external-secrets
+
+  sourceRepos:
+    - https://charts.external-secrets.io
+
+  destinations:
+    - namespace: external-secrets
+      server: https://kubernetes.default.svc
+  # Allow all cluster-scoped resources to be created
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+
+  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+
+  orphanedResources:
+    warn: true
+---
+# Source: bootstrap/templates/project.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: external-secrets-config
+  namespace: argocd   # namespace must be "argocd"
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Project for external-secrets-config
+
+  sourceRepos:
+    - https://github.com/kronicle-tech/kronicle-argocd-config.git
+
+  destinations:
+    - namespace: external-secrets
+      server: https://kubernetes.default.svc
+  # Allow all cluster-scoped resources to be created
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+
+  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+
+  orphanedResources:
+    warn: true
+---
+# Source: bootstrap/templates/project.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: kronicle
+  namespace: argocd   # namespace must be "argocd"
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Project for kronicle
+
+  sourceRepos:
+    - https://github.com/kronicle-tech/kronicle-argocd-config.git
+
+  destinations:
+    - namespace: kronicle
+      server: https://kubernetes.default.svc
+  clusterResourceBlacklist:
+    - group: '*'
+      kind: '*'
+
+  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  namespaceResourceBlacklist:
+    - group: ''
+      kind: ResourceQuota
+    - group: ''
+      kind: LimitRange
+    - group: ''
+      kind: NetworkPolicy
+
+  orphanedResources:
+    warn: true
+    ignore:
+      - kind: Secret
+        name: kronicle-app-tls
+      - kind: Secret
+        name: kronicle-service-tls

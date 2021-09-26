@@ -1,0 +1,56 @@
+---
+# Source: kronicle/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kronicle-service
+  namespace: kronicle
+  annotations:
+    kubernetes.io/ingress.class: "public"   # The "public" ingress class is specific to microk8s
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    cert-manager.io/cluster-issuer: "zerossl"
+spec:
+  rules:
+    - host: demo-service.external.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kronicle-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - demo-service.external.example.com
+      secretName: kronicle-service-tls
+---
+# Source: kronicle/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kronicle-app
+  namespace: kronicle
+  annotations:
+    kubernetes.io/ingress.class: "public"   # The "public" ingress class is specific to microk8s
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    cert-manager.io/cluster-issuer: "zerossl"
+spec:
+  rules:
+    - host: demo.external.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kronicle-app
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - demo.external.example.com
+      secretName: kronicle-app-tls

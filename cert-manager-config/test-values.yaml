@@ -1,0 +1,3 @@
+internalDomain: "internal.example.com"
+externalDomain: "external.example.com"
+secretsManagerSecretName: "test-secret-name"
