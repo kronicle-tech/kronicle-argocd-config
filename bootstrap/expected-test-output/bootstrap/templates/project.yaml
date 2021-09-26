@@ -3,40 +3,6 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: argocd-config
-  namespace: argocd   # namespace must be "argocd"
-  # Finalizer that ensures that project is not deleted until it is not referenced by any application
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  description: Project for argocd-config
-
-  sourceRepos:
-    - https://github.com/kronicle-tech/kronicle-argocd-config.git
-
-  destinations:
-    - namespace: argocd
-      server: https://kubernetes.default.svc
-  clusterResourceBlacklist:
-    - group: '*'
-      kind: '*'
-
-  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
-  namespaceResourceBlacklist:
-    - group: ''
-      kind: ResourceQuota
-    - group: ''
-      kind: LimitRange
-    - group: ''
-      kind: NetworkPolicy
-
-  orphanedResources:
-    warn: true
----
-# Source: bootstrap/templates/project.yaml
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
   name: cert-manager
   namespace: argocd   # namespace must be "argocd"
   # Finalizer that ensures that project is not deleted until it is not referenced by any application

@@ -26,9 +26,6 @@ applications:
   cert-manager-config:
     clusterResources: true
     namespace: cert-manager
-  argocd-config:
-    clusterResources: false
-    namespace: argocd
   kronicle:
     clusterResources: false
     namespace: kronicle
