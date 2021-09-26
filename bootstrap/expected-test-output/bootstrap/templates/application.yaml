@@ -54,6 +54,10 @@ spec:
 
     helm:
       parameters:
+        - name: "awsRegion"
+          value: "us-west-1"
+        - name: "awsRole"
+          value: "arn:aws:iam::1234:role/cert-manager-example-role"
         - name: "externalDomain"
           value: "cert-manager.external.example.com"
         - name: "internalDomain"

@@ -1,9 +1,11 @@
 applications:
   cert-manager-config:
     helmParameters:
+      awsRegion: "us-west-1"
+      awsRole: "arn:aws:iam::1234:role/cert-manager-example-role"
+      secretsManagerSecretName: "cert-manager-test-secret-name"
       internalDomain: "cert-manager.internal.example.com"
       externalDomain: "cert-manager.external.example.com"
-      secretsManagerSecretName: "cert-manager-test-secret-name"
   external-secrets-config:
     helmParameters:
       awsRegion: "us-west-1"

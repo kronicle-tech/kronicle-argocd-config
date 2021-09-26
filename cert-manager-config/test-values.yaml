@@ -1,3 +1,6 @@
+awsRegion: "us-west-1"
+awsRole: "arn:aws:iam::1234:role/external-secrets-example-role"
+secretsManagerSecretName: "test-secret-name"
+zerosslEabKid: "test1234"
 internalDomain: "internal.example.com"
 externalDomain: "external.example.com"
-secretsManagerSecretName: "test-secret-name"
