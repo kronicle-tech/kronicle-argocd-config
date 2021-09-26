@@ -28,7 +28,7 @@ test {
             '*/values.yaml',
             '*/values-*.yaml',
             '*/expected-test-output',
-            '*/templates/*')
+            '*/templates/*.*')
 
     useJUnitPlatform()
     testLogging {
