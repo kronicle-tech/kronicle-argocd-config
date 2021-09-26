@@ -1,5 +1,5 @@
 apiVersion: v2
-name: external-secrets
+name: external-secrets-config
 description: Configures external-secrets https://external-secrets.io
 type: application
 version: 0.1.0

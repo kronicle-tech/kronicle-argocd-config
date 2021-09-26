@@ -1,0 +1,29 @@
+---
+# Source: argocd/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server-http
+  namespace: argocd
+  annotations:
+    kubernetes.io/ingress.class: "public"   # The "public" ingress class is specific to microk8s
+    nginx.ingress.kubernetes.io/whitelist-source-range: "1.2.3.4/32,5.6.7.8./32"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    cert-manager.io/cluster-issuer: "zerossl"
+spec:
+  rules:
+    - host: argocd.internal.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - argocd.internal.example.com
+      secretName: argocd-server-http-tls
