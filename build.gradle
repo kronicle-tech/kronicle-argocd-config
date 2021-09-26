@@ -22,6 +22,14 @@ dependencies {
 }
 
 test {
+    inputs.files('*/.helmignore',
+            '*/Chart.yaml',
+            '*/test-values.yaml',
+            '*/values.yaml',
+            '*/values-*.yaml',
+            '*/expected-test-output',
+            '*/templates/*')
+
     useJUnitPlatform()
     testLogging {
         events "passed", "skipped", "failed"

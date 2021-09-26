@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: kronicle-service
-          image: ghcr.io/kronicle-tech/kronicle-service:0.1.24
+          image: ghcr.io/kronicle-tech/kronicle-service:1.2.3
           env:
             - name: REPO_FINDERS_GITHUB_USERS_O_USERNAME
               valueFrom:
@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
         - name: kronicle-app
-          image: ghcr.io/kronicle-tech/kronicle-app:0.1.24
+          image: ghcr.io/kronicle-tech/kronicle-app:1.2.3
           env:
             - name: CLIENT_SIDE_SERVICE_BASE_URL
               value: https://demo-service.external.example.com
