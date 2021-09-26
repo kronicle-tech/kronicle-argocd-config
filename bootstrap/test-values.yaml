@@ -1,9 +1,18 @@
-projects.argocd.helmParameters.internalDomain: "argocd.internal.example.com"
-projects.argocd.helmParameters.ipAllowList: "1.2.3.4/32,5.6.7.8./32"
-projects.cert-manager-config.helmParameters.internalDomain: "cert-manager.internal.example.com"
-projects.cert-manager-config.helmParameters.externalDomain: "cert-manager.external.example.com"
-projects.cert-manager-config.helmParameters.secretsManagerSecretName: "cert-manager-test-secret-name"
-projects.external-secrets-config.helmParameters.awsRegion: "us-west-1"
-projects.external-secrets-config.helmParameters.awsRole: "arn:aws:iam::1234:role/external-secrets-example-role"
-projects.kronicle.helmParameters.externalDomain: "kronicle.external.example.com"
-projects.kronicle.helmParameters.secretsManagerSecretName: "kronicle-test-secret-name"
+applications:
+  argocd-config:
+    helmParameters:
+      internalDomain: "argocd.internal.example.com"
+      ipAllowList: "1.2.3.4/32,5.6.7.8./32"
+  cert-manager-config:
+    helmParameters:
+      internalDomain: "cert-manager.internal.example.com"
+      externalDomain: "cert-manager.external.example.com"
+      secretsManagerSecretName: "cert-manager-test-secret-name"
+  external-secrets-config:
+    helmParameters:
+      awsRegion: "us-west-1"
+      awsRole: "arn:aws:iam::1234:role/external-secrets-example-role"
+  kronicle:
+    helmParameters:
+      externalDomain: "kronicle.external.example.com"
+      secretsManagerSecretName: "kronicle-test-secret-name"
