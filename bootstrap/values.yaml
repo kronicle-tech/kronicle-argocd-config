@@ -1,6 +1,7 @@
 applications:
   external-secrets:
     clusterResources: true
+    createNamespace: true
     namespace: external-secrets
     repoURL: https://charts.external-secrets.io
     # Run the following commands to find the latest chart version:
