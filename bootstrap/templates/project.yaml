@@ -32,6 +32,10 @@ spec:
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
+  {{- else if $application.createNamespace }}
+  clusterResourceWhitelist:
+    - group: ''
+      kind: 'Namespace'
   {{- else }}
   clusterResourceBlacklist:
     - group: '*'
