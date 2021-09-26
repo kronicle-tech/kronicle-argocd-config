@@ -108,7 +108,7 @@ spec:
       selfHeal: true
       allowEmpty: false
     syncOptions:
-      - CreateNamespace=false
+      - CreateNamespace=true
 ---
 # Source: bootstrap/templates/application.yaml
 apiVersion: argoproj.io/v1alpha1
