@@ -11,7 +11,7 @@ spec:
       keySecretRef:
         name: zerossl-eab-hmac-key
         key: secret
-    disableAccountKeyGeneration: true
+#    disableAccountKeyGeneration: true
     privateKeySecretRef:
       name: zerossl-account-key
     solvers:
