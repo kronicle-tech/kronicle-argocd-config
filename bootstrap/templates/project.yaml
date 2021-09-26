@@ -17,10 +17,15 @@ spec:
   destinations:
   {{- if $application.namespace }}
     - namespace: {{ $application.namespace }}
+      server: https://kubernetes.default.svc
+    {{- range $namespace := $application.additionalNamespaces }}
+    - namespace: {{ $namespace }}
+      server: https://kubernetes.default.svc
+    {{- end }}
   {{- else }}
     - namespace: '*'
-  {{- end }}
       server: https://kubernetes.default.svc
+  {{- end }}
 
   {{- if $application.clusterResources }}
   # Allow all cluster-scoped resources to be created

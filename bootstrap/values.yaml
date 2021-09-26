@@ -16,6 +16,8 @@ applications:
   cert-manager:
     clusterResources: true
     namespace: cert-manager
+    additionalNamespaces:
+      - kube-system
     repoURL: https://charts.jetstack.io
     # Run the following commands to find the latest chart version:
     # $ helm repo add jetstack https://charts.jetstack.io
