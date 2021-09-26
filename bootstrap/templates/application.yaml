@@ -30,8 +30,10 @@ spec:
     {{- end }}
   {{- end }}
 
+  {{- if not (hasKey $application "chart") }}
       valueFiles:
         - values-prod.yaml
+  {{- end }}
 
   destination:
     server: https://kubernetes.default.svc

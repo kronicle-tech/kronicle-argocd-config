@@ -18,7 +18,6 @@ spec:
     path: argocd
 
     helm:
-
       valueFiles:
         - values-prod.yaml
 
@@ -55,9 +54,6 @@ spec:
         - name: "installCRDs"
           value: "true"
 
-      valueFiles:
-        - values-prod.yaml
-
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
@@ -87,7 +83,6 @@ spec:
     path: cert-manager-config
 
     helm:
-
       valueFiles:
         - values-prod.yaml
 
@@ -124,9 +119,6 @@ spec:
         - name: "installCRDs"
           value: "true"
 
-      valueFiles:
-        - values-prod.yaml
-
   destination:
     server: https://kubernetes.default.svc
     namespace: external-secrets
@@ -156,7 +148,6 @@ spec:
     path: external-secrets-config
 
     helm:
-
       valueFiles:
         - values-prod.yaml
 
@@ -189,7 +180,6 @@ spec:
     path: kronicle
 
     helm:
-
       valueFiles:
         - values-prod.yaml
 
