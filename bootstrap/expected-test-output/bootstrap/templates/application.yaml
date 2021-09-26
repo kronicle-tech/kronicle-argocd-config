@@ -48,7 +48,6 @@ spec:
   source:
     repoURL: https://charts.jetstack.io
     targetRevision: "v1.5.3"
-    path: cert-manager
     chart: cert-manager
 
     helm:
@@ -118,7 +117,6 @@ spec:
   source:
     repoURL: https://charts.external-secrets.io
     targetRevision: "0.3.5"
-    path: external-secrets
     chart: external-secrets
 
     helm:
