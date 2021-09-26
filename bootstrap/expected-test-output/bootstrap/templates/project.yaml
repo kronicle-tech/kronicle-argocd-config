@@ -15,7 +15,7 @@ spec:
     - https://charts.jetstack.io
 
   destinations:
-    - namespace: '*'
+    - namespace: cert-manager
       server: https://kubernetes.default.svc
   # Allow all cluster-scoped resources to be created
   clusterResourceWhitelist:
