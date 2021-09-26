@@ -35,6 +35,9 @@ spec:
 
   orphanedResources:
     warn: true
+    ignore:
+      - kind: Secret
+        name: cert-manager-webhook-ca
 ---
 # Source: bootstrap/templates/project.yaml
 apiVersion: argoproj.io/v1alpha1
@@ -70,6 +73,9 @@ spec:
 
   orphanedResources:
     warn: true
+    ignore:
+      - kind: Secret
+        name: cert-manager-webhook-ca
 ---
 # Source: bootstrap/templates/project.yaml
 apiVersion: argoproj.io/v1alpha1
