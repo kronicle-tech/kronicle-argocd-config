@@ -15,7 +15,7 @@ spec:
     - https://github.com/kronicle-tech/kronicle-argocd-config.git
 
   destinations:
-    - namespace: argocd-config
+    - namespace: argocd
       server: https://kubernetes.default.svc
   clusterResourceBlacklist:
     - group: '*'
@@ -49,7 +49,7 @@ spec:
     - https://charts.jetstack.io
 
   destinations:
-    - namespace: cert-manager
+    - namespace: '*'
       server: https://kubernetes.default.svc
   # Allow all cluster-scoped resources to be created
   clusterResourceWhitelist:

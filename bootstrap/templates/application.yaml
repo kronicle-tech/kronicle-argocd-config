@@ -37,8 +37,8 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-  {{- if ($application.useNamespace | default true) }}
-    namespace: {{ $application.namespace | default $name }}
+  {{- if $application.namespace }}
+    namespace: {{ $application.namespace }}
   {{- end }}
 
   syncPolicy:

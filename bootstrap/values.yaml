@@ -1,6 +1,7 @@
 applications:
   external-secrets:
     clusterResources: true
+    namespace: external-secrets
     repoURL: https://charts.external-secrets.io
     # Run the following commands to find the latest chart version:
     # $ helm repo add external-secrets https://charts.external-secrets.io
@@ -14,7 +15,6 @@ applications:
     namespace: external-secrets
   cert-manager:
     clusterResources: true
-    useNamespace: false
     repoURL: https://charts.jetstack.io
     # Run the following commands to find the latest chart version:
     # $ helm repo add jetstack https://charts.external-secrets.io
@@ -28,8 +28,10 @@ applications:
     namespace: cert-manager
   argocd-config:
     clusterResources: false
+    namespace: argocd
   kronicle:
     clusterResources: false
+    namespace: kronicle
     ignoredOrphanedResources:
       - kind: Secret
         name: kronicle-app-tls
