@@ -33,6 +33,7 @@ applications:
     namespace: cert-manager
   kronicle:
     clusterResources: false
+    createNamespace: true
     namespace: kronicle
     ignoredOrphanedResources:
       - kind: Secret
