@@ -34,10 +34,7 @@ spec:
       kind: NetworkPolicy
 
   orphanedResources:
-    warn: true
-    ignore:
-      - kind: Secret
-        name: cert-manager-webhook-ca
+    warn: false
 ---
 # Source: bootstrap/templates/project.yaml
 apiVersion: argoproj.io/v1alpha1
@@ -72,10 +69,7 @@ spec:
       kind: NetworkPolicy
 
   orphanedResources:
-    warn: true
-    ignore:
-      - kind: Secret
-        name: cert-manager-webhook-ca
+    warn: false
 ---
 # Source: bootstrap/templates/project.yaml
 apiVersion: argoproj.io/v1alpha1
@@ -110,7 +104,7 @@ spec:
       kind: NetworkPolicy
 
   orphanedResources:
-    warn: true
+    warn: false
 ---
 # Source: bootstrap/templates/project.yaml
 apiVersion: argoproj.io/v1alpha1
@@ -145,7 +139,7 @@ spec:
       kind: NetworkPolicy
 
   orphanedResources:
-    warn: true
+    warn: false
 ---
 # Source: bootstrap/templates/project.yaml
 apiVersion: argoproj.io/v1alpha1
@@ -179,9 +173,4 @@ spec:
       kind: NetworkPolicy
 
   orphanedResources:
-    warn: true
-    ignore:
-      - kind: Secret
-        name: kronicle-app-tls
-      - kind: Secret
-        name: kronicle-service-tls
+    warn: false
