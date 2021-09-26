@@ -1,2 +1,4 @@
+kronicleAppImageTag: 1.2.3
+kronicleServiceImageTag: 1.2.3
 externalDomain: "external.example.com"
 secretsManagerSecretName: "test-secret-name"
