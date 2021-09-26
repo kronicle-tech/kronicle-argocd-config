@@ -6,11 +6,11 @@ spec:
   acme:
     server: https://acme.zerossl.com/v2/DV90
     externalAccountBinding:
-    # keyID and keySecretRef are used when a new private key needs to be generated
-    keyID: {{ .Values.zerosslEabKid }}
-    keySecretRef:
-      name: zerossl-eab-hmac-key
-      key: secret
+      # keyID and keySecretRef are used when a new private key needs to be generated
+      keyID: {{ .Values.zerosslEabKid }}
+      keySecretRef:
+        name: zerossl-eab-hmac-key
+        key: secret
     disableAccountKeyGeneration: false
     privateKeySecretRef:
       name: zerossl-account-key
