@@ -20,10 +20,6 @@ spec:
         - name: kronicle-service
           image: ghcr.io/kronicle-tech/kronicle-service:1.2.3
           env:
-            - name: REPO_FINDERS_IGNORED_REPOS_0_URL
-              value: https://github.com/kronicle-tech/kronicle-metadata-repo-template.git
-            - name: REPO_FINDERS_IGNORED_REPOS_1_URL
-              value: https://github.com/kronicle-tech/kronicle-metadata-codebase-template.git
             - name: REPO_FINDERS_GITHUB_USERS_0_USERNAME
               valueFrom:
                 secretKeyRef:
