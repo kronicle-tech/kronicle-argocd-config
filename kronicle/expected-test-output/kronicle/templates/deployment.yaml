@@ -20,12 +20,12 @@ spec:
         - name: kronicle-service
           image: ghcr.io/kronicle-tech/kronicle-service:1.2.3
           env:
-            - name: REPO_FINDERS_GITHUB_USERS_O_USERNAME
+            - name: REPO_FINDERS_GITHUB_USERS_0_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: kronicle-service-config
                   key: github-repo-finder-username
-            - name: REPO_FINDERS_GITHUB_USERS_O_PERSONAL_ACCESS_TOKEN
+            - name: REPO_FINDERS_GITHUB_USERS_0_PERSONAL_ACCESS_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: kronicle-service-config
