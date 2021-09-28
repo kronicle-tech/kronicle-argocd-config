@@ -95,7 +95,7 @@ spec:
   source:
     repoURL: https://helm.elastic.co
     targetRevision: "1.8.0"
-    chart: elastic/eck-operator
+    chart: eck-operator
 
     helm:
 
