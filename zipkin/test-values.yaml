@@ -1,3 +1,4 @@
 zipkinImageTag: 1.2.3
+ingressIpAllowList: "1.2.3.4/32,5.6.7.8/32"
 elasticsearchImageTag: 1.2.3
 internalDomain: "internal.example.com"
