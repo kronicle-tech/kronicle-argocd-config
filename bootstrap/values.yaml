@@ -44,7 +44,7 @@ applications:
     # $ helm repo add elastic https://helm.elastic.co
     # $ helm search repo elastic/eck-operator
     targetRevision: 1.8.0
-    chart: elastic/eck-operator
+    chart: eck-operator
   zipkin:
     clusterResources: false
     createNamespace: true
