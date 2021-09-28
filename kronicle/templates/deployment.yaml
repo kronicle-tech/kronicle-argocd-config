@@ -32,6 +32,8 @@ spec:
                 secretKeyRef:
                   name: kronicle-service-config
                   key: github-repo-finder-personal-access-token
+            - name: ZIPKIN_BASE_URL
+              value: http://zipkin.zipkin.svc.cluster.local
           ports:
             - containerPort: 8090
 ---
