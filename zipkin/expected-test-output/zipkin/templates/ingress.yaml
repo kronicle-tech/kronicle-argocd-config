@@ -1,0 +1,28 @@
+---
+# Source: zipkin/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: zipkin
+  namespace: zipkin
+  annotations:
+    kubernetes.io/ingress.class: "public"   # The "public" ingress class is specific to microk8s
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    cert-manager.io/cluster-issuer: "zerossl"
+spec:
+  rules:
+    - host: zipkin.internal.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: zipkin
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - zipkin.internal.example.com
+      secretName: zipkin-tls

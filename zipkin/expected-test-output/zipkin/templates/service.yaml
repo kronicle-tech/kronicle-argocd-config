@@ -1,0 +1,13 @@
+---
+# Source: zipkin/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: zipkin
+spec:
+  selector:
+    app: zipkin
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9411

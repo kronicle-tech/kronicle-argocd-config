@@ -35,3 +35,17 @@ applications:
     clusterResources: false
     createNamespace: true
     namespace: kronicle
+  elastic-cloud-on-kubernetes:
+    clusterResources: true
+    createNamespace: true
+    namespace: elastic-system
+    repoURL: https://helm.elastic.co
+    # Run the following commands to find the latest chart version:
+    # $ helm repo add elastic https://helm.elastic.co
+    # $ helm search repo elastic/eck-operator
+    targetRevision: 1.8.0
+    chart: elastic/eck-operator
+  zipkin:
+    clusterResources: false
+    createNamespace: true
+    namespace: zipkin

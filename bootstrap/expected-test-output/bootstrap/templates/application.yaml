@@ -83,6 +83,38 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: elastic-cloud-on-kubernetes
+  namespace: argocd   # namespace must be "argocd"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # The project the application belongs to.
+  project: elastic-cloud-on-kubernetes
+
+  # Source of the application manifests
+  source:
+    repoURL: https://helm.elastic.co
+    targetRevision: "1.8.0"
+    chart: elastic/eck-operator
+
+    helm:
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: elastic-system
+
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - CreateNamespace=true
+---
+# Source: bootstrap/templates/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: external-secrets
   namespace: argocd   # namespace must be "argocd"
   finalizers:
@@ -183,6 +215,40 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: kronicle
+
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+      - CreateNamespace=true
+---
+# Source: bootstrap/templates/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: zipkin
+  namespace: argocd   # namespace must be "argocd"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # The project the application belongs to.
+  project: zipkin
+
+  # Source of the application manifests
+  source:
+    repoURL: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    targetRevision: "HEAD"
+    path: zipkin
+
+    helm:
+      valueFiles:
+        - values-prod.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: zipkin
 
   syncPolicy:
     automated:

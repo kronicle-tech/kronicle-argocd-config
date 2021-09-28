@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin
+  labels:
+    app: zipkin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zipkin
+  template:
+    metadata:
+      labels:
+        app: zipkin
+    spec:
+      containers:
+        - name: zipkin
+          image: ghcr.io/openzipkin/zipkin-slim:{{ .Values.zipkinImageTag }}
+          env:
+            - name: STORAGE_TYPE
+              value: elasticsearch
+              # This setting is important for Kronicle to be able to query Zipkin reliably
+            - name: QUERY_TIMEOUT
+              value: 70s
+            - name: ES_HOSTS
+              value: http://zipkin-elasticsearch.zipkin.svc.cluster.local:9200
+              # This setting is important for Kronicle to be able to query Zipkin reliably
+            - name: ES_TIMEOUT
+              value: 60s
+              # No point setting higher than 1 as running on a single node k8s cluster
+            - name: ES_INDEX_SHARDS
+              value: 1
+          ports:
+            - containerPort: 9411
