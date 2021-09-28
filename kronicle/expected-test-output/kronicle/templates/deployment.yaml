@@ -36,6 +36,8 @@ spec:
                   key: github-repo-finder-personal-access-token
             - name: ZIPKIN_BASE_URL
               value: http://zipkin.zipkin.svc.cluster.local
+            - name: ZIPKIN_SAMPLE_RATE
+              value: "1.0"
           ports:
             - containerPort: 8090
 ---
