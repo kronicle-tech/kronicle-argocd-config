@@ -8,10 +8,12 @@ spec:
   selector:
     app: kronicle-service
   ports:
-    - protocol: TCP
+    - name: main
+      protocol: TCP
       port: 80
       targetPort: 8090
-    - protocol: TCP
+    - name: management
+      protocol: TCP
       port: 81
       targetPort: 8091
 ---
