@@ -11,6 +11,9 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8090
+    - protocol: TCP
+      port: 81
+      targetPort: 8091
 ---
 # Source: kronicle/templates/service.yaml
 apiVersion: v1
