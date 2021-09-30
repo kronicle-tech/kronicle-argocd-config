@@ -38,6 +38,8 @@ spec:
               value: http://zipkin.zipkin.svc.cluster.local
             - name: ZIPKIN_SAMPLE_RATE
               value: "1.0"
+            - name: SONARQUBE_BASE_URL
+              value: https://sonarcloud.io
           ports:
             - containerPort: 8090
 ---
