@@ -65,5 +65,9 @@ spec:
               value: https://demo-service.{{ .Values.externalDomain }}
             - name: SERVER_SIDE_SERVICE_BASE_URL
               value: http://kronicle-service.kronicle.svc.cluster.local
+            - name: ANALYTICS_PLAUSIBLE_ENABLED
+              value: "true"
+            - name: ANALYTICS_PLAUSIBLE_DATA_DOMAIN
+              value: demo.{{ .Values.externalDomain }}
           ports:
             - containerPort: 3000
