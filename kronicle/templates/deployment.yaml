@@ -80,13 +80,13 @@ spec:
 
                 #### What are all the components my team owns?
 
-                When teams are merged, split and components moved from one team to another, it can be difficult for
-                team members to remember all the components they own, especially the less frequently changes
-                components. Kronicle provides each team with
-                [a page that lists all their components](/teams/kronicle-project/components), including any extra info about how
-                they own those components (are they shared with another team, are they a secondary owner with another
-                team having primary owner etc.). Kronicle provides each area with
-                [a page that shows all components owned by that area's team(s)](/areas/website/components).
+                When teams are merged, teams are split and components moved from one team to another, it can be
+                difficult for team members to remember all the components they own, especially the less frequently
+                changed components. Kronicle provides each team with
+                [a page that lists all their components](/teams/kronicle-project/components), including any extra info
+                about how they own those components - is a component shared with another team, is the team a secondary
+                owner with another team having primary ownership of a component etc. Kronicle also provides each area
+                with [a page that shows all components owned by that area's team(s)](/areas/website/components).
 
                 #### Who owns a particular component?
 
