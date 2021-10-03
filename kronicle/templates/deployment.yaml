@@ -38,6 +38,8 @@ spec:
               value: "1.0"
             - name: SONARQUBE_BASE_URL
               value: https://sonarcloud.io
+            - name: SONARQUBE_ORGANIZATIONS_0
+              value: kronicle-tech
           ports:
             - containerPort: 8090
 ---
