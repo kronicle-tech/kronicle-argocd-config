@@ -1,0 +1,151 @@
+# This file is read automatically by Kronicle https://kronicle.tech
+
+componentTypes:
+  - id: kubernetes-controller
+    description: |
+      A [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/)
+  - id: managed-service
+    description: |
+      A managed service is typically a software capability - a queue, database, search index etc. - that is hosted and
+      managed by a third party (e.g. a cloud provider)
+  - id: webapp
+    description:
+      A webapp is a web-based application that servers web pages and/or web APIs over HTTP/HTTPS
+  - id: certificate-authority
+    description:
+      A [certificate authority](https://en.wikipedia.org/wiki/Certificate_authority) is an organisation or company
+      that issues digital certificates, including those used for TLS/HTTPS
+
+platforms:
+  - id: kubernetes
+    description: |
+      A [microk8s](https://microk8s.io)-based [Kubernetes (k8s)](https://kubernetes.io) single node cluster
+  - id: external
+    description: |
+      Am external platform that is outside of and used by the Demo environment
+
+components:
+  - id: argocd
+    name: Argo CD
+    typeId: kubernetes-controller
+    description: |
+      [Argo CD](https://argoproj.github.io/cd/) is deployed to the Demo environment's Kubernetes cluster to provide
+      GitOps style management of all the software running on the Kubernetes cluster
+    repo:
+      url: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    teams:
+      - teamId: kronicle-project
+        description: |
+          The Kroncile Project maintains the deployment of Argo CD to the Kronicle demo environment
+    platformId: kubernetes
+    links:
+      - url: https://argoproj.github.io/cd/
+        description: |
+          The Argo CD website
+    dependencies:
+      - targetComponentId: cert-manager
+      - targetComponentId: kronicle-app
+        direction: inbound
+      - targetComponentId: kronicle-service
+        direction: inbound
+  - id: cert-manager
+    name: cert-manager
+    typeId: kubernetes-controller
+    description: |
+      [cert-manager](https://cert-manager.io) is deployed to the Demo environment's Kubernetes cluster to create proper
+      TLS certificates for various domain names exposed to the public internet by the Kubernetes cluster
+    repo:
+      url: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    teams:
+      - teamId: kronicle-project
+        description: |
+          The Kroncile Project maintains the deployment of cert-manager to the Kronicle demo environment
+    platformId: kubernetes
+    links:
+      - url: https://cert-manager.io
+        description: |
+          The cert-manager website
+    dependencies:
+      - targetComponentId: zerossl
+      - targetComponentId: external-secrets
+  - id: zerossl
+    name: ZeroSSL
+    typeId: certificate-authority
+    description: |
+      [ZeroSSL](https://zerossl.com) is a certificate authority that issues free TLS certificats.
+      [cert-manager](/components/cert-manager) uses ZeroSSL to issue valid TLS certifices for the Demo environment
+    notes: |
+      ZeroSSL is an alternative to [Let`s Encrypt](https://letsencrypt.org) that doesn't impose the rate limits and
+      certificate issuing limits that Let's Encrypt does, making it suitable for use with an ephemeral Kubernetes
+      cluster.
+    repo:
+      url: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    teams:
+      - teamId: kronicle-project
+        description: |
+          The Kroncile Project maintains the use of ZeroSSL in the Kronicle demo environment
+    platformId: external
+    links:
+      - url: https://zerossl.com
+        description: |
+          The ZeroSSL website
+  - id: external-secrets
+    name: External Secrets
+    typeId: kubernetes-controller
+    description: |
+      [External Secrets Operator](https://external-secrets.io) is deployed to the Demo environment's Kubernetes cluster
+      to create Kubernetes `Secret` resources based on secrets in
+      [AWS Secrets Manager](/components/aws-secrets-manager)
+    repo:
+      url: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    teams:
+      - teamId: kronicle-project
+        description: |
+          The Kroncile Project maintains the deployment of the External Secrets Operator to the Kronicle demo
+          environment
+    platformId: kubernetes
+    links:
+      - url: https://external-secrets.io
+        description: |
+          The External Secrets Operator website
+    dependencies:
+      - targetComponentId: aws-secrets-manager
+  - id: aws-secrets-manager
+    name: AWS Secrets Manager
+    typeId: managed-service
+    description: |
+      AWS Secrets Manager is used by [External Secrets Operator](/components/external-secrets) to create Kubernetes
+      `Secret` resources in the Demo environment's Kubernetes cluster
+    repo:
+      url: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    teams:
+      - teamId: kronicle-project
+        description: |
+          The Kroncile Project maintains the deployment of the External Secrets Operator to the Kronicle demo
+          environment
+    platformId: external
+    links:
+      - url: https://external-secrets.io
+        description: |
+          The External Secrets Operator website
+  - id: zipkin
+    name: Zipkin
+    typeId: webapp
+    description: |
+      [Zipkin](https://zipkin.io) is deployed to the Demo environment's Kubernetes cluster to provide distributed
+      tracing for the software deployed to the Kronicle demo environment and demo Kronicle's built-in integration with
+      Zipkin
+    repo:
+      url: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    teams:
+      - teamId: kronicle-project
+        description: |
+          The Kroncile Project maintains the deployment of Zipkin to the Kronicle demo environment
+    platformId: kubernetes
+    links:
+      - url: https://zipkin.io
+        description: |
+          The Zipkin website
+    dependencies:
+      - targetComponentId: kronicle-service
+        direction: inbound
