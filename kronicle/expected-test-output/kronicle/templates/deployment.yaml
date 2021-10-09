@@ -3,66 +3,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kronicle-service
-  labels:
-    app: kronicle-service
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: kronicle-service
-  template:
-    metadata:
-      labels:
-        app: kronicle-service
-    spec:
-      containers:
-        - name: kronicle-service
-          image: ghcr.io/kronicle-tech/kronicle-service:1.2.3
-          env:
-            - name: REPO_FINDERS_IGNORED_REPOS_0_URL
-              value: https://github.com/kronicle-tech/kronicle-metadata-repo-template.git
-            - name: REPO_FINDERS_IGNORED_REPOS_1_URL
-              value: https://github.com/kronicle-tech/kronicle-metadata-codebase-template.git
-            - name: REPO_FINDERS_GITHUB_ORGANIZATIONS_0_ACCOUNT_NAME
-              value: kronicle-tech
-            - name: REPO_FINDERS_GITHUB_ORGANIZATIONS_0_PERSONAL_ACCESS_TOKEN_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: kronicle-service-config
-                  key: github-repo-finder-username
-            - name: REPO_FINDERS_GITHUB_ORGANIZATIONS_0_PERSONAL_ACCESS_TOKEN_VALUE
-              valueFrom:
-                secretKeyRef:
-                  name: kronicle-service-config
-                  key: github-repo-finder-personal-access-token
-            - name: REPO_FINDERS_GITHUB_ORGANIZATIONS_1_ACCOUNT_NAME
-              value: kronicle-computers
-            - name: REPO_FINDERS_GITHUB_ORGANIZATIONS_1_PERSONAL_ACCESS_TOKEN_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: kronicle-service-config
-                  key: github-repo-finder-username
-            - name: REPO_FINDERS_GITHUB_ORGANIZATIONS_1_PERSONAL_ACCESS_TOKEN_VALUE
-              valueFrom:
-                secretKeyRef:
-                  name: kronicle-service-config
-                  key: github-repo-finder-personal-access-token
-            - name: ZIPKIN_BASE_URL
-              value: http://zipkin.zipkin.svc.cluster.local
-            - name: ZIPKIN_SAMPLE_RATE
-              value: "1.0"
-            - name: SONARQUBE_BASE_URL
-              value: https://sonarcloud.io
-            - name: SONARQUBE_ORGANIZATIONS_0
-              value: kronicle-tech
-          ports:
-            - containerPort: 8090
----
-# Source: kronicle/templates/deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: kronicle-app
   labels:
     app: kronicle-app
@@ -146,3 +86,63 @@ spec:
                 For a summary of all the types of data in this demo, see the following parts of this page.
           ports:
             - containerPort: 3000
+---
+# Source: kronicle/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kronicle-service
+  labels:
+    app: kronicle-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kronicle-service
+  template:
+    metadata:
+      labels:
+        app: kronicle-service
+    spec:
+      containers:
+        - name: kronicle-service
+          image: ghcr.io/kronicle-tech/kronicle-service:1.2.3
+          env:
+            - name: REPO_FINDERS_IGNORED_REPOS_0_URL
+              value: https://github.com/kronicle-tech/kronicle-metadata-repo-template.git
+            - name: REPO_FINDERS_IGNORED_REPOS_1_URL
+              value: https://github.com/kronicle-tech/kronicle-metadata-codebase-template.git
+            - name: REPO_FINDERS_GITHUB_ORGANIZATIONS_0_ACCOUNT_NAME
+              value: kronicle-tech
+            - name: REPO_FINDERS_GITHUB_ORGANIZATIONS_0_PERSONAL_ACCESS_TOKEN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: kronicle-service-config
+                  key: github-repo-finder-username
+            - name: REPO_FINDERS_GITHUB_ORGANIZATIONS_0_PERSONAL_ACCESS_TOKEN_VALUE
+              valueFrom:
+                secretKeyRef:
+                  name: kronicle-service-config
+                  key: github-repo-finder-personal-access-token
+            - name: REPO_FINDERS_GITHUB_ORGANIZATIONS_1_ACCOUNT_NAME
+              value: kronicle-computers
+            - name: REPO_FINDERS_GITHUB_ORGANIZATIONS_1_PERSONAL_ACCESS_TOKEN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: kronicle-service-config
+                  key: github-repo-finder-username
+            - name: REPO_FINDERS_GITHUB_ORGANIZATIONS_1_PERSONAL_ACCESS_TOKEN_VALUE
+              valueFrom:
+                secretKeyRef:
+                  name: kronicle-service-config
+                  key: github-repo-finder-personal-access-token
+            - name: ZIPKIN_BASE_URL
+              value: http://zipkin.zipkin.svc.cluster.local
+            - name: ZIPKIN_SAMPLE_RATE
+              value: "1.0"
+            - name: SONARQUBE_BASE_URL
+              value: https://sonarcloud.io
+            - name: SONARQUBE_ORGANIZATIONS_0
+              value: kronicle-tech
+          ports:
+            - containerPort: 8090
