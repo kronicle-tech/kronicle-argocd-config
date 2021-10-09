@@ -110,6 +110,8 @@ components:
           The External Secrets Operator website
     dependencies:
       - targetComponentId: aws-secrets-manager
+      - targetComponentId: kronicle-service
+        direction: inbound
   - id: aws-secrets-manager
     name: AWS Secrets Manager
     typeId: managed-service
