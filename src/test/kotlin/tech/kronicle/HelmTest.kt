@@ -22,6 +22,10 @@ class HelmTest {
                         val actualTestOutputDir = it.resolve("build/actual-test-output")
                         recreateDir(actualTestOutputDir)
                         shellRun("helm", listOf("template", it.fileName.toString(), "-f", "${it.fileName}/values.yaml", "-f", "${it.fileName}/test-values.yaml", "--output-dir", actualTestOutputDir.toString()))
+                        if (UPDATE_EXPECTED_TEST_OUTPUTS) {
+                            recreateDir(expectedTestOutputDir)
+                            copyDirRecursively(actualTestOutputDir, expectedTestOutputDir)
+                        }
                         compareDirs(expectedTestOutputDir, actualTestOutputDir)
                     }
                 }
@@ -30,6 +34,10 @@ class HelmTest {
     private fun recreateDir(dir: Path) {
         dir.toFile().deleteRecursively()
         dir.createDirectories()
+    }
+
+    private fun copyDirRecursively(sourceDir: Path, targetDir: Path) {
+        sourceDir.toFile().copyRecursively(targetDir.toFile())
     }
 
     private fun getHelmChartDirs(): Stream<Path> {
@@ -53,5 +61,10 @@ class HelmTest {
     private fun compareFiles(expectedDir: Path, actualDir: Path, files: List<Path>) {
         files.stream()
                 .forEach { assertThat(actualDir.resolve(it)).hasSameTextualContentAs(expectedDir.resolve(it)) }
+    }
+
+    companion object {
+        @JvmStatic
+        private val UPDATE_EXPECTED_TEST_OUTPUTS = System.getenv("UPDATE_EXPECTED_TEST_OUTPUTS") == "true"
     }
 }
