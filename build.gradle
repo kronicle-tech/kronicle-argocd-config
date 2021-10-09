@@ -22,16 +22,24 @@ dependencies {
 }
 
 test {
-    inputs.files('*/.helmignore',
-            '*/Chart.yaml',
-            '*/test-values.yaml',
-            '*/values.yaml',
-            '*/values-*.yaml',
-            '*/expected-test-output',
-            '*/templates/*.*')
+    projectDir.eachDir {
+        if (new File(it, 'expected-test-output').exists()) {
+            inputs.files(new File(it, '.helmignore'),
+                    new File(it, 'Chart.yaml'),
+                    new File(it, 'test-values.yaml'),
+                    new File(it, 'values.yaml'),
+                    new File(it, 'values-*.yaml'))
+            inputs.dir new File(it, 'expected-test-output')
+            inputs.dir new File(it, 'templates')
+        }
+    }
 
     useJUnitPlatform()
     testLogging {
         events "passed", "skipped", "failed"
+    }
+
+    if (project.hasProperty('update')) {
+        environment 'UPDATE_EXPECTED_TEST_OUTPUTS', 'true'
     }
 }
