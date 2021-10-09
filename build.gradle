@@ -6,6 +6,8 @@ repositories {
     mavenCentral()
 }
 
+apply from: "gradle/kronicle-metadata.gradle"
+
 tasks.named('wrapper') {
     distributionType = Wrapper.DistributionType.ALL
 }
