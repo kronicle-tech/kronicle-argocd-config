@@ -45,7 +45,7 @@ spec:
                 [a page that lists all their components](/teams/kronicle-project/components), including any extra info
                 about how they own those components - is a component shared with another team, is the team a secondary
                 owner with another team having primary ownership of a component etc. Kronicle also provides each area
-                with [a page that shows all components owned by that area's team(s)](/areas/website/components).
+                with [a page that shows all components owned by that area's team(s)](/areas/kronicle-computers/components).
 
                 <h4 class="text-success">Who owns a particular component?</h4>
 
@@ -67,9 +67,25 @@ spec:
 
                 In Kronicle, tech debt items can recorded against components.  Kronicle that provides pages for
                 [individual components](/components/kronicle-service/tech-debts),
-                [teams](/teams/kronicle-project/tech-debts) and [whole areas](/areas/website/tech-debts) showing all
+                [teams](/teams/kronicle-project/tech-debts) and [whole areas](/areas/kronicle-computers/tech-debts) showing all
                 the tech debt items.  Tech debt items have a descrition and a priority level.  Optionally that can
                 include further notes and links to external resources like wikis, issue tickets etc.
+
+                <h4 class="text-success">What API endpoints does a particular service have?</h4>
+
+                Kronicle fully supports OpenAPI specs.  URLs for OpenaPI specs can be added to `kronicle.yaml`, which
+                is great if services using something like [Springdoc](https://springdoc.org) to dynamically generate
+                and serve OpenAPI specs.  Kronicle can also auto-discover OpenAPI spec files checked into codebase Git
+                repos.
+
+                Kronicle provides pages that show
+                [all the OpenAPI specs in Kronicle](https://demo.kronicle.tech/all-components/openapi-specs),
+                [in an area](https://demo.kronicle.tech/areas/kronicle-project/openapi-specs),
+                [in a team](https://demo.kronicle.tech/teams/kronicle-project/openapi-specs) and
+                [for an individual component](https://demo.kronicle.tech/components/kronicle-service/openapi-specs).
+
+                You can then click through to view
+                [invidual OpenAPI specs rendered automatically using Redoc](https://demo.kronicle.tech/components/kronicle-service/openapi-specs/1).
 
                 <h4 class="text-success">Which components have more than 80% code coverage and which have less?</h4>
 
