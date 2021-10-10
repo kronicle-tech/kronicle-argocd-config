@@ -31,7 +31,7 @@ spec:
             - name: INTRO_MARKDOWN
               value: |
                 This is a live demo for [Kronicle](https://kronicle.tech). Kronicle is an open source system for
-                documenting and visualising a tech stack, from software through infrastructure.
+                documenting and visualising a tech stack, including software and infrastructure.
 
                 Kronicle can help your teams with these kinds of questions:
 
@@ -39,16 +39,15 @@ spec:
 
                 When teams are merged, teams are split and components moved from one team to another, it can be
                 difficult for team members to remember all the components they own, especially the less frequently
-                changed components. Kronicle provides each team with
-                [a page that lists all their components](/teams/kronicle-project/components), including any extra info
-                about how they own those components - is a component shared with another team, is the team a secondary
-                owner with another team having primary ownership of a component etc. Kronicle also provides each area
-                with [a page that shows all components owned by that area's team(s)](/areas/kronicle-computers/components).
+                changed components. Kronicle provides each team with:
+
+                * [A page that lists all of a team's components](/teams/kronicle-project/components), including any extra info about how they own those components - is a component shared with another team, is the team a secondary owner with another team having primary ownership of a component etc.
+                * Kronicle also provides each area with [a page that shows all components owned by that area's team(s)](/areas/kronicle-computers/components).
 
                 <h4 class="text-success">Who owns a particular component?</h4>
 
                 Each component in Kronical has a
-                [page that lists the team(s) that own that component](/components/shop-spa).
+                [page that lists the team(s) that own that component](/components/user-service).
 
                 <h4 class="text-success">How do I get in touch with a particular team?</h4>
 
@@ -63,39 +62,59 @@ spec:
 
                 <h4 class="text-success">What significant tech debt does my team have?</h4>
 
-                In Kronicle, tech debt items can recorded against components.  Kronicle that provides pages for
-                [individual components](/components/kronicle-service/tech-debts),
-                [teams](/teams/kronicle-project/tech-debts) and [whole areas](/areas/kronicle-computers/tech-debts) showing all
-                the tech debt items.  Tech debt items have a descrition and a priority level.  Optionally that can
-                include further notes and links to external resources like wikis, issue tickets etc.
+                In Kronicle, tech debt items can recorded against components.  Kronicle provides the following types
+                of pages:
+
+                * Each component has a [page that shows the component's tech debt](/components/kronicle-service/tech-debts), if any
+                * Each team has a [page that shows the tech debt for all the components the team owns](/teams/kronicle-project/tech-debts)
+                * Each area has a [page that shows all the tech debt for the teams in that area](/areas/kronicle-project/tech-debts)
+
+                Tech debt items have a descrition and a priority level.  Optionally that can include further notes and
+                links to external resources like wikis, issue tickets etc.
 
                 <h4 class="text-success">What API endpoints does a particular service have?</h4>
 
-                Kronicle fully supports OpenAPI specs.  URLs for OpenaPI specs can be added to `kronicle.yaml`, which
-                is great if services using something like [Springdoc](https://springdoc.org) to dynamically generate
-                and serve OpenAPI specs.  Kronicle can also auto-discover OpenAPI spec files checked into codebase Git
-                repos.
+                Kronicle fully supports OpenAPI specs.  URLs for OpenaPI specs can be added to a `kronicle.yaml` file
+                in a component's Git repo with YAML like this:
 
-                Kronicle provides pages that show
-                [all the OpenAPI specs in Kronicle](https://demo.kronicle.tech/all-components/openapi-specs),
-                [in an area](https://demo.kronicle.tech/areas/kronicle-project/openapi-specs),
-                [in a team](https://demo.kronicle.tech/teams/kronicle-project/openapi-specs) and
-                [for an individual component](https://demo.kronicle.tech/components/kronicle-service/openapi-specs).
+                ```yaml
+                openApiSpecs:
+                  - url: https://example-service/openapi
+                    description: |
+                      OpenAPI spec for the Example Service in production
+                ```
+
+                This approach can work well if a service is using something like [Springdoc](https://springdoc.org)
+                to dynamically generate and serve an OpenAPI spec.
+
+                Kronicle can also auto-discover any OpenAPI spec files checked into a component's Git repo.
+
+                Kronicle provides the following types of pages:
+
+                * [All the OpenAPI specs in Kronicle](https://demo.kronicle.tech/all-components/openapi-specs)
+                * [All the OpenAPI specs in an area](https://demo.kronicle.tech/areas/kronicle-project/openapi-specs)
+                * [All the OpenAPI specs in a team](https://demo.kronicle.tech/teams/kronicle-project/openapi-specs)
+                * [The OpenAPI spec(s) for an individual component](https://demo.kronicle.tech/components/kronicle-service/openapi-specs)
 
                 You can then click through to view
-                [invidual OpenAPI specs rendered automatically using Redoc](https://demo.kronicle.tech/components/kronicle-service/openapi-specs/1).
+                [an invidual OpenAPI spec rendered automatically using Redoc](https://demo.kronicle.tech/components/kronicle-service/openapi-specs/1).
 
                 <h4 class="text-success">Which components have more than 80% code coverage and which have less?</h4>
 
                 If you use SonarQube, Kronicle can collect the code coverage figure from SonarQube for each component.
-                Kronicle provides pages that show the code coverage status for
-                [all components](/tests/sonar-qube-code-coverage), components in an area and components in a team.
+                Kronicle provides pages that show the code coverage status for:
+
+                * [All components](/tests/sonar-qube-code-coverage)
+                * [All components in an area](/areas/kronicle-project/tests/sonar-qube-code-coverage)
+                * [All components in a team](/teams/kronicle-project/tests/sonar-qube-code-coverage)
 
                 <h4 class="text-success">What are the response times for my component?</h4>
 
                 If you are using Zipkin for distributed tracing, Kronicle can show the response times for
                 [incoming requests](/components/kronicle-service/response-times) and
                 [outgoing requests](/components/kronicle-service/downstream-response-times).
+
+                <h4 class="text-success">The rest of this page</h4>
 
                 For a summary of all the types of data in this demo, see the following parts of this page.
           ports:
