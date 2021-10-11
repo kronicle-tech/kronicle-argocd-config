@@ -180,8 +180,6 @@ spec:
                 secretKeyRef:
                   name: kronicle-service-config
                   key: github-repo-finder-personal-access-token
-                  key-software:
-                    rules:
             - name: KEY_SOFTWARE_RULES_0_SOFTWARE_NAME_PATTERN
               value: "^gradle-wrapper$"
             - name: KEY_SOFTWARE_RULES_0_NAME
