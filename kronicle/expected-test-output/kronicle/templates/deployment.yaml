@@ -220,16 +220,12 @@ spec:
             - name: KEY_SOFTWARE_RULES_8_NAME
               value: "Lombok"
             - name: KEY_SOFTWARE_RULES_9_SOFTWARE_NAME_PATTERN
-              value: "^org.projectlombok:lombok$"
-            - name: KEY_SOFTWARE_RULES_9_NAME
-              value: "Lombok"
-            - name: KEY_SOFTWARE_RULES_10_SOFTWARE_NAME_PATTERN
               value: "^org.jetbrains.kotlin:kotlin-bom$"
-            - name: KEY_SOFTWARE_RULES_10_NAME
+            - name: KEY_SOFTWARE_RULES_9_NAME
               value: "Kotlin"
-            - name: KEY_SOFTWARE_RULES_11_SOFTWARE_NAME_PATTERN
+            - name: KEY_SOFTWARE_RULES_10_SOFTWARE_NAME_PATTERN
               value: "^io.micronaut:micronaut-bom$"
-            - name: KEY_SOFTWARE_RULES_11_NAME
+            - name: KEY_SOFTWARE_RULES_10_NAME
               value: "Micronaut"
             - name: ZIPKIN_BASE_URL
               value: http://zipkin.zipkin.svc.cluster.local
