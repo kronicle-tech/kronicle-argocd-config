@@ -183,6 +183,56 @@ spec:
                 secretKeyRef:
                   name: kronicle-service-config
                   key: github-repo-finder-personal-access-token
+                  key-software:
+                    rules:
+            - name: KEY_SOFTWARE_RULES_0_SOFTWARE_NAME_PATTERN
+              value: "^gradle-wrapper$"
+            - name: KEY_SOFTWARE_RULES_0_NAME
+              value: "Gradle"
+            - name: KEY_SOFTWARE_RULES_1_SOFTWARE_NAME_PATTERN
+              value: "^org.springframework.boot:"
+            - name: KEY_SOFTWARE_RULES_1_NAME
+              value: "Spring Boot"
+            - name: KEY_SOFTWARE_RULES_2_SOFTWARE_NAME_PATTERN
+              value: "^com.google.guava:guava$"
+            - name: KEY_SOFTWARE_RULES_2_NAME
+              value: "Guava"
+            - name: KEY_SOFTWARE_RULES_3_SOFTWARE_NAME_PATTERN
+              value: "^io.zipkin.brave:brave$"
+            - name: KEY_SOFTWARE_RULES_3_NAME
+              value: "Zipkin Brave"
+            - name: KEY_SOFTWARE_RULES_4_SOFTWARE_NAME_PATTERN
+              value: "^io.dropwizard:dropwizard-core$"
+            - name: KEY_SOFTWARE_RULES_4_NAME
+              value: "Dropwizard"
+            - name: KEY_SOFTWARE_RULES_5_SOFTWARE_NAME_PATTERN
+              value: "^org.mongodb:(mongodb-driver|mongo-java-driver)$"
+            - name: KEY_SOFTWARE_RULES_5_NAME
+              value: "MongoDB Driver"
+            - name: KEY_SOFTWARE_RULES_6_SOFTWARE_NAME_PATTERN
+              value: "^com.fasterxml.jackson.core:"
+            - name: KEY_SOFTWARE_RULES_6_NAME
+              value: "Jackson"
+            - name: KEY_SOFTWARE_RULES_7_SOFTWARE_NAME_PATTERN
+              value: "^org.springframework.cloud:spring-cloud-dependencies$"
+            - name: KEY_SOFTWARE_RULES_7_NAME
+              value: "Spring Cloud"
+            - name: KEY_SOFTWARE_RULES_8_SOFTWARE_NAME_PATTERN
+              value: "^org.projectlombok:lombok$"
+            - name: KEY_SOFTWARE_RULES_8_NAME
+              value: "Lombok"
+            - name: KEY_SOFTWARE_RULES_9_SOFTWARE_NAME_PATTERN
+              value: "^org.projectlombok:lombok$"
+            - name: KEY_SOFTWARE_RULES_9_NAME
+              value: "Lombok"
+            - name: KEY_SOFTWARE_RULES_10_SOFTWARE_NAME_PATTERN
+              value: "^org.jetbrains.kotlin:kotlin-bom$"
+            - name: KEY_SOFTWARE_RULES_10_NAME
+              value: "Kotlin"
+            - name: KEY_SOFTWARE_RULES_11_SOFTWARE_NAME_PATTERN
+              value: "^io.micronaut:micronaut-bom$"
+            - name: KEY_SOFTWARE_RULES_11_NAME
+              value: "Micronaut"
             - name: ZIPKIN_BASE_URL
               value: http://zipkin.zipkin.svc.cluster.local
             - name: ZIPKIN_SAMPLE_RATE
