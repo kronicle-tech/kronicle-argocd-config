@@ -12,7 +12,7 @@ metadata:
     cert-manager.io/cluster-issuer: "zerossl"
 spec:
   rules:
-    - host: demo-service.
+    - host: demo-service.external.example.com
       http:
         paths:
           - path: /
@@ -24,7 +24,7 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - demo-service.
+        - demo-service.external.example.com
       secretName: kronicle-service-tls
 ---
 # Source: kronicle/templates/ingress.yaml
@@ -40,7 +40,7 @@ metadata:
     cert-manager.io/cluster-issuer: "zerossl"
 spec:
   rules:
-    - host: demo.
+    - host: demo.external.example.com
       http:
         paths:
           - path: /
@@ -52,5 +52,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - demo.
+        - demo.external.example.com
       secretName: kronicle-app-tls

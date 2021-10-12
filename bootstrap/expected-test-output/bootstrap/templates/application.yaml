@@ -207,6 +207,8 @@ spec:
 
     helm:
       parameters:
+        - name: "externalDomain"
+          value: "cert-manager.external.example.com"
         - name: "kronicle.app.env.ANALYTICS_PLAUSIBLE_DATA_DOMAIN"
           value: "demo.cert-manager.external.example.com"
         - name: "kronicle.app.env.CLIENT_SIDE_SERVICE_BASE_URL"

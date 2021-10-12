@@ -6,3 +6,4 @@ kronicle:
       ANALYTICS_PLAUSIBLE_DATA_DOMAIN: demo.external.example.com
 
 secretsManagerSecretName: "test-secret-name"
+externalDomain: external.example.com
