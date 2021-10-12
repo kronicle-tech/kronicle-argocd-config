@@ -51,6 +51,7 @@ applications:
     namespace: kronicle
     helmParameterTemplates:
       secretsManagerSecretName: "{{ .Values.kronicleSecretsManagerSecretName }}"
+      externalDomain: "{{ .Values.externalDomain }}"
       kronicle.app.env.CLIENT_SIDE_SERVICE_BASE_URL: "https://demo-service.{{ .Values.externalDomain }}"
       kronicle.app.env.ANALYTICS_PLAUSIBLE_DATA_DOMAIN: "demo.{{ .Values.externalDomain }}"
 
