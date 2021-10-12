@@ -64,6 +64,8 @@ spec:
           value: "cert-manager.internal.example.com"
         - name: "secretsManagerSecretName"
           value: "cert-manager-test-secret-name"
+        - name: "zerosslEabKid"
+          value: "test1234"
       valueFiles:
         - values-prod.yaml
 
@@ -205,8 +207,10 @@ spec:
 
     helm:
       parameters:
-        - name: "externalDomain"
-          value: "kronicle.external.example.com"
+        - name: "kronicle.app.env.ANALYTICS_PLAUSIBLE_DATA_DOMAIN"
+          value: "demo.cert-manager.external.example.com"
+        - name: "kronicle.app.env.CLIENT_SIDE_SERVICE_BASE_URL"
+          value: "https://demo-service.cert-manager.external.example.com"
         - name: "secretsManagerSecretName"
           value: "kronicle-test-secret-name"
       valueFiles:
@@ -243,6 +247,11 @@ spec:
     path: zipkin
 
     helm:
+      parameters:
+        - name: "ingressIpAllowList"
+          value: "1.2.3.4/32,5.6.7.8/32"
+        - name: "internalDomain"
+          value: "cert-manager.internal.example.com"
       valueFiles:
         - values-prod.yaml
 

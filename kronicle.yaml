@@ -2,6 +2,10 @@
 
 componentTypes:
 
+  - id: helm-chart
+    description: |
+      A [Helm Chart](https://helm.sh/docs/topics/charts/)
+
   - id: kubernetes-controller
     description: |
       A [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/)

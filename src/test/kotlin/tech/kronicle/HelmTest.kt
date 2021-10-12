@@ -21,7 +21,21 @@ class HelmTest {
                         val expectedTestOutputDir = it.resolve("expected-test-output")
                         val actualTestOutputDir = it.resolve("build/actual-test-output")
                         recreateDir(actualTestOutputDir)
-                        shellRun("helm", listOf("template", it.fileName.toString(), "-f", "${it.fileName}/values.yaml", "-f", "${it.fileName}/test-values.yaml", "--output-dir", actualTestOutputDir.toString()))
+                        val chartName = it.fileName.toString()
+                        shellRun("helm", listOf(
+                            "dependency",
+                            "update",
+                            chartName))
+                        shellRun("helm", listOf(
+                            "template",
+                            chartName,
+                            chartName,
+                            "-f",
+                            "${it.fileName}/values.yaml",
+                            "-f",
+                            "${it.fileName}/test-values.yaml",
+                            "--output-dir",
+                            actualTestOutputDir.toString()))
                         if (UPDATE_EXPECTED_TEST_OUTPUTS) {
                             recreateDir(expectedTestOutputDir)
                             copyDirRecursively(actualTestOutputDir, expectedTestOutputDir)

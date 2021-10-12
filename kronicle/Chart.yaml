@@ -3,3 +3,7 @@ name: kronicle
 description: Deploys the Kronicle live demo
 type: application
 version: 0.1.0
+dependencies:
+  - name: kronicle
+    version: "0.1.1"
+    repository: "https://charts.kronicle.tech"

@@ -11,9 +11,14 @@ applications:
     chart: external-secrets
     helmParameters:
       installCRDs: 'true'
+
   external-secrets-config:
     clusterResources: true
     namespace: external-secrets
+    helmParameterTemplates:
+      awsRegion: "{{ .Values.awsRegion }}"
+      awsRole: "{{ .Values.externalSecretsAwsRole }}"
+
   cert-manager:
     clusterResources: true
     createNamespace: true
@@ -28,13 +33,27 @@ applications:
     chart: cert-manager
     helmParameters:
       installCRDs: 'true'
+
   cert-manager-config:
     clusterResources: true
     namespace: cert-manager
+    helmParameterTemplates:
+      awsRegion: "{{ .Values.awsRegion }}"
+      awsRole: "{{ .Values.certManagerAwsRole }}"
+      secretsManagerSecretName: "{{ .Values.certManagerSecretsManagerSecretName }}"
+      zerosslEabKid: "{{ .Values.certManagerZerosslEabKid }}"
+      internalDomain: "{{ .Values.internalDomain }}"
+      externalDomain: "{{ .Values.externalDomain }}"
+
   kronicle:
     clusterResources: false
     createNamespace: true
     namespace: kronicle
+    helmParameterTemplates:
+      secretsManagerSecretName: "{{ .Values.kronicleSecretsManagerSecretName }}"
+      kronicle.app.env.CLIENT_SIDE_SERVICE_BASE_URL: "https://demo-service.{{ .Values.externalDomain }}"
+      kronicle.app.env.ANALYTICS_PLAUSIBLE_DATA_DOMAIN: "demo.{{ .Values.externalDomain }}"
+
   elastic-cloud-on-kubernetes:
     clusterResources: true
     createNamespace: true
@@ -45,7 +64,11 @@ applications:
     # $ helm search repo elastic/eck-operator
     targetRevision: 1.8.0
     chart: eck-operator
+
   zipkin:
     clusterResources: false
     createNamespace: true
     namespace: zipkin
+    helmParameterTemplates:
+      ingressIpAllowList: "{{ .Values.ingressIpAllowList }}"
+      internalDomain: "{{ .Values.internalDomain }}"

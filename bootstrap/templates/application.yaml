@@ -22,11 +22,19 @@ spec:
   {{- end }}
 
     helm:
-  {{- if $application.helmParameters }}
+  {{- if or $application.helmParameters $application.helmParameterTemplates }}
       parameters:
-    {{- range $key, $value := $application.helmParameters }}
+    {{- if $application.helmParameters }}
+      {{- range $key, $value := $application.helmParameters }}
         - name: "{{ $key }}"
-          value: "{{ $value }}"
+          value: {{ $value | quote }}
+      {{- end }}
+    {{- end }}
+    {{- if $application.helmParameterTemplates }}
+      {{- range $key, $value := $application.helmParameterTemplates }}
+        - name: "{{ $key }}"
+          value: {{ tpl $value $ | quote }}
+      {{- end }}
     {{- end }}
   {{- end }}
 
