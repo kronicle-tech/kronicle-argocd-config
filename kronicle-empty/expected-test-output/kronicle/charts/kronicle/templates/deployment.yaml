@@ -20,6 +20,8 @@ spec:
         - name: kronicle-app
           image: ghcr.io/kronicle-tech/kronicle-app:1.2.3
           env:
+            - name: "SERVER_SIDE_SERVICE_BASE_URL"
+              value: "http://kronicle-service.test-namespace.svc.cluster.local"
             - name: "ANALYTICS_PLAUSIBLE_DATA_DOMAIN"
               value: "empty.external.example.com"
             - name: "ANALYTICS_PLAUSIBLE_ENABLED"
@@ -30,8 +32,6 @@ spec:
               value: "This is an empty instance of [Kronicle](https://kronicle.tech) that uses\nhttps://github.com/kronicle-tech/kronicle-helm-charts for deployment to Kubernetes.\n\nSee https://demo.kronicle.tech for a more full featured deployment of Kronicle.\n"
             - name: "INTRO_TITLE"
               value: "Kronicle Empty Instance"
-            - name: "SERVER_SIDE_SERVICE_BASE_URL"
-              value: "http://kronicle-service.svc.cluster.local"
           ports:
             - containerPort: 3000
 ---

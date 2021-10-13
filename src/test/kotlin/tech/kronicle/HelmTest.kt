@@ -19,23 +19,35 @@ class HelmTest {
                 .map {
                     dynamicTest("Helm chart ${it.fileName} should produce expected output") {
                         val expectedTestOutputDir = it.resolve("expected-test-output")
-                        val actualTestOutputDir = it.resolve("build/actual-test-output")
+                        val actualTestOutputDirPath = "build/actual-test-output"
+                        val actualTestOutputDir = it.resolve(actualTestOutputDirPath)
                         recreateDir(actualTestOutputDir)
                         val chartName = it.fileName.toString()
-                        shellRun("helm", listOf(
-                            "dependency",
-                            "update",
-                            chartName))
-                        shellRun("helm", listOf(
-                            "template",
-                            chartName,
-                            chartName,
-                            "-f",
-                            "${it.fileName}/values.yaml",
-                            "-f",
-                            "${it.fileName}/test-values.yaml",
-                            "--output-dir",
-                            actualTestOutputDir.toString()))
+                        shellRun("helm",
+                            listOf(
+                                "dependency",
+                                "update",
+                                "."
+                            ),
+                            it.toFile()
+                        )
+                        shellRun(
+                            "helm",
+                            listOf(
+                                "template",
+                                chartName,
+                                ".",
+                                "-n",
+                                "test-namespace",
+                                "-f",
+                                "values.yaml",
+                                "-f",
+                                "test-values.yaml",
+                                "--output-dir",
+                                actualTestOutputDirPath
+                            ),
+                            it.toFile()
+                        )
                         if (UPDATE_EXPECTED_TEST_OUTPUTS) {
                             recreateDir(expectedTestOutputDir)
                             copyDirRecursively(actualTestOutputDir, expectedTestOutputDir)
