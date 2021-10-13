@@ -1,0 +1,8 @@
+kronicle:
+  version: 1.2.3
+  app:
+    env:
+      CLIENT_SIDE_SERVICE_BASE_URL: https://empty-service.external.example.com
+      ANALYTICS_PLAUSIBLE_DATA_DOMAIN: empty.external.example.com
+
+externalDomain: external.example.com
