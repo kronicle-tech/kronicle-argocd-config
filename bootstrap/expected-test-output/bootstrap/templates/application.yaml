@@ -213,6 +213,8 @@ spec:
           value: "demo.cert-manager.external.example.com"
         - name: "kronicle.app.env.CLIENT_SIDE_SERVICE_BASE_URL"
           value: "https://demo-service.cert-manager.external.example.com"
+        - name: "kronicle.service.env.OPENAPI_SPEC_SERVERS_0_URL"
+          value: "https://demo-service.cert-manager.external.example.com"
         - name: "secretsManagerSecretName"
           value: "kronicle-test-secret-name"
       valueFiles:
