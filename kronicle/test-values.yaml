@@ -4,6 +4,9 @@ kronicle:
     env:
       CLIENT_SIDE_SERVICE_BASE_URL: https://demo-service.external.example.com
       ANALYTICS_PLAUSIBLE_DATA_DOMAIN: demo.external.example.com
+  service:
+    env:
+      OPENAPI_SPEC_SERVERS_0_URL: https://demo-service.external.example.com
 
 secretsManagerSecretName: "test-secret-name"
 externalDomain: external.example.com
