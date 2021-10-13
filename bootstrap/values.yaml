@@ -41,7 +41,7 @@ applications:
       awsRegion: "{{ .Values.awsRegion }}"
       awsRole: "{{ .Values.certManagerAwsRole }}"
       secretsManagerSecretName: "{{ .Values.certManagerSecretsManagerSecretName }}"
-      zerosslEabKid: "{{ .Values.certManagerZerosslEabKid }}"
+      zerosslEabKid: "{{ .Values.zerosslEabKid }}"
       internalDomain: "{{ .Values.internalDomain }}"
       externalDomain: "{{ .Values.externalDomain }}"
 
