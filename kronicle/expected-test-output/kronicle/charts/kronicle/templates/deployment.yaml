@@ -100,6 +100,8 @@ spec:
               value: "Kotlin"
             - name: "KEY_SOFTWARE_RULES_9_SOFTWARE_NAME_PATTERN"
               value: "^org.jetbrains.kotlin:kotlin-bom$"
+            - name: "OPENAPI_SPEC_CLEAR_EXISTING_SERVERS"
+              value: "true"
             - name: "OPENAPI_SPEC_SERVERS_0_DESCRIPTION"
               value: "The demo instance of Kronicle Service"
             - name: "OPENAPI_SPEC_SERVERS_0_URL"
