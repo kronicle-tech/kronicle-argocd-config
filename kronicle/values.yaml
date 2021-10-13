@@ -3,7 +3,6 @@ kronicle:
   
   app:
     env:
-      SERVER_SIDE_SERVICE_BASE_URL: http://kronicle-service.kronicle.svc.cluster.local
       ANALYTICS_PLAUSIBLE_ENABLED: "true"
       INTRO_TITLE: Kronicle Live Demo
       INTRO_MARKDOWN: |

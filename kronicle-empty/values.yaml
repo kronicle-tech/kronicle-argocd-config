@@ -1,0 +1,12 @@
+kronicle:
+  version: 0.1.84
+  
+  app:
+    env:
+      ANALYTICS_PLAUSIBLE_ENABLED: "true"
+      INTRO_TITLE: Kronicle Empty Instance
+      INTRO_MARKDOWN: |
+        This is an empty instance of [Kronicle](https://kronicle.tech) that uses
+        https://github.com/kronicle-tech/kronicle-helm-charts for deployment to Kubernetes.
+
+        See https://demo.kronicle.tech for a more full featured deployment of Kronicle.

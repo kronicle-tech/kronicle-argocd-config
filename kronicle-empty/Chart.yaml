@@ -1,0 +1,9 @@
+apiVersion: v2
+name: kronicle
+description: Deploys an empty instance of Kronicle
+type: application
+version: 0.1.0
+dependencies:
+  - name: kronicle
+    version: "0.2.0"
+    repository: "https://charts.kronicle.tech"

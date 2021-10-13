@@ -56,6 +56,15 @@ applications:
       kronicle.app.env.ANALYTICS_PLAUSIBLE_DATA_DOMAIN: "demo.{{ .Values.externalDomain }}"
       kronicle.service.env.OPENAPI_SPEC_SERVERS_0_URL: "https://demo-service.{{ .Values.externalDomain }}"
 
+  kronicle-empty:
+    clusterResources: false
+    createNamespace: true
+    namespace: kronicle-empty
+    helmParameterTemplates:
+      externalDomain: "{{ .Values.externalDomain }}"
+      kronicle.app.env.CLIENT_SIDE_SERVICE_BASE_URL: "https://empty-service.{{ .Values.externalDomain }}"
+      kronicle.app.env.ANALYTICS_PLAUSIBLE_DATA_DOMAIN: "empty.{{ .Values.externalDomain }}"
+
   elastic-cloud-on-kubernetes:
     clusterResources: true
     createNamespace: true
