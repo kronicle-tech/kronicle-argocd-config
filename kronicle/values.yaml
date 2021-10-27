@@ -7,110 +7,19 @@ kronicle:
       INTRO_TITLE: Kronicle Live Demo
       INTRO_MARKDOWN: |
         This is a live demo for [Kronicle](https://kronicle.tech). Kronicle is an open source system for
-        documenting and visualising a tech stack, including software and infrastructure.
+        visualising and documenting a tech stack, including software and infrastructure.
 
-        Kronicle can help your teams with these kinds of questions:
+        Interesting pages in the demo:
 
-        <h4 class="text-success">What are all the components my team owns?</h4>
-
-        When teams are merged, teams are split and components moved from one team to another, it can be
-        difficult for team members to remember all the components they own, especially the less frequently
-        changed components.
-
-        Kronicle provides each team with:
-
-        * [A page that lists all of a team's components](/teams/kronicle-project/components), including any extra info about how they own those components - is a component shared with another team, is the team a secondary owner with another team having primary ownership of a component etc.
-        * Kronicle also provides each area with [a page that shows all components owned by that area's team(s)](/areas/kronicle-computers/components).
-
-        <h4 class="text-success">Who owns a particular component?</h4>
-
-        Each component in Kronical has a
-        [page that lists the team(s) that own that component](/components/user-service).
-
-        <h4 class="text-success">How do I get in touch with a particular team?</h4>
-
-        Each team has a
-        [page that includes a description of the team and can include links to Slack channels, wiki pages etc.](/teams/frontend)
-
-        <h4 class="text-success">How does a particular component fit into the tech stack?</h4>
-
-        Each component has a
-        [page that displays an auto-generated diagram of the components it calls and the components called by it](/components/kronicle-service/dependencies)
-        which includes filters controlling what is shown in the diagram.
-
-        <h4 class="text-success">What API endpoints does a particular service have?</h4>
-
-        Kronicle fully supports OpenAPI specs.
-
-        URLs for OpenaPI specs can be added to a `kronicle.yaml` file in a component's Git repo with YAML like this:
-
-        ```yaml
-        openApiSpecs:
-          - url: https://example-service/openapi
-            description: |
-              OpenAPI spec for the Example Service in production
-        ```
-
-        This approach can work well if a service is using something like [Springdoc](https://springdoc.org)
-        to dynamically generate and serve an OpenAPI spec.
-
-        Kronicle can also auto-discover any OpenAPI spec files checked into a component's Git repo.
-
-        Kronicle provides the following types of pages:
-
-        * [All the OpenAPI specs in Kronicle](https://demo.kronicle.tech/all-components/openapi-specs)
-        * [All the OpenAPI specs in an area](https://demo.kronicle.tech/areas/kronicle-project/openapi-specs)
-        * [All the OpenAPI specs in a team](https://demo.kronicle.tech/teams/kronicle-project/openapi-specs)
-        * [The OpenAPI spec(s) for an individual component](https://demo.kronicle.tech/components/kronicle-service/openapi-specs)
-
-        You can then click through to view
-        [an individual OpenAPI spec rendered automatically using Redoc](https://demo.kronicle.tech/components/kronicle-service/openapi-specs/1).
-
-        <h4 class="text-success">What significant tech debt does my team have?</h4>
-
-        In Kronicle, tech debt can be visualised in the following ways:
-
-        * Each component has a [page that shows the component's tech debt](/components/kronicle-service/tech-debts), if any
-        * Each team has a [page that shows the tech debt for all the components the team owns](/teams/kronicle-project/tech-debts)
-        * Each area has a [page that shows all the tech debt for the teams in that area](/areas/kronicle-project/tech-debts)
-
-        Tech debt items have a description and a priority level.
-
-        Optionally a tech debt item can include further notes and links to external webpages e.g. wiki pages, Jira
-        tickets etc.
-
-        <h4 class="text-success">What Cross Functional Requirements does my team's components have to meet?</h4>
-
-        In Kronicle, cross functional requirements (CFRs or NFRs) can also be recorded against components.
-        Kronicle provides the following types of pages for CFRs:
-
-        * Each component has a [page that shows the component's CFRs](/components/kronicle-service/cross-functional-requirements), if any
-        * Each team has a [page that shows the CFRs for all the components the team owns](/teams/kronicle-project/cross-functional-requirements)
-        * Each area has a [page that shows all the CFRs for the teams in that area](/areas/kronicle-project/cross-functional-requirements)
-
-        CFRs have a description.
-
-        Optionally a CFR can include further notes and links to external webpages.
-
-        <h4 class="text-success">Which components have more than 80% code coverage and which have less?</h4>
-
-        If you use SonarQube, Kronicle can collect the code coverage figure from SonarQube for each component.
-
-        Kronicle also provides pages that display the code coverage status for:
-
-        * [All components](/tests/sonar-qube-code-coverage)
-        * [All components in an area](/areas/kronicle-project/tests/sonar-qube-code-coverage)
-        * [All components in a team](/teams/kronicle-project/tests/sonar-qube-code-coverage)
-
-        <h4 class="text-success">What are the response times for my component?</h4>
-
-        If you are using Zipkin for distributed tracing, Kronicle can show the response times for
-        [incoming requests](/components/kronicle-service/response-times) and
-        [outgoing requests](/components/kronicle-service/downstream-response-times).
-
-        <h4 class="text-success">The rest of this page</h4>
-
-        For a summary of all the types of data in this demo, see the following parts of this page.
+        1. [An interactive, dynamically generated dependencies diagram](/all-components/dependencies) that shows all the components in the demo tech stack and how they connect to each other.  Try hovering over items in the diagram and using the filters on the right hand side.
+        2. [A list of all the components in the demo tech stack](/all-components).  Try using the filters on the right hand side.
+        3. Kronicle fully supports OpenAPI specs.  Kronicle can download OpenAPI specs hosted on a service's endpoint (e.g. with Springdoc) and then [hostes a copy of those OpenAPI specs](/all-components/openapi-specs).  Click a link in the `Link` column on that page to view an individual OpenAPI spec rendered using Redoc.
+        4. [A list of all the components owned by a team](/teams/kronicle-project/components)
+        5. [Dependencies diagram for an individual component](/components/kronicle-service/dependencies).  Use the radius dropdown on the right hand side to see more of the tech stack that surrounds the component.
+        6. [A component's page which shows the "key software" used by the component and other important information](/components/kronicle-service).  Kronicle automatically scans Gradle build scripts (npm support coming soon) to find the key software used by the component.
+        7. [All the tech debt for the tech stack](/all-components/tech-debts)
+        8. [All the cross functional requirements (NFRs) for a team](/teams/kronicle-project/cross-functional-requirements)
+        9. [Response times for any components using Zipkin for distributed tracing](/components/kronicle-service/response-times).
 
   service:
     env:
