@@ -122,22 +122,22 @@ spec:
               value: "http://zipkin.zipkin.svc.cluster.local"
             - name: "ZIPKIN_SAMPLE_RATE"
               value: "1.0"
-            - name: "REPO_FINDERS_GITHUB_ORGANIZATIONS_0_PERSONAL_ACCESS_TOKEN_USERNAME"
+            - name: "REPO_FINDERS_GITHUB_ORGANIZATIONS_0_ACCESS_TOKEN_USERNAME"
               valueFrom:
                 secretKeyRef:
                   name: "kronicle-service-config"
                   key: "github-repo-finder-username"
-            - name: "REPO_FINDERS_GITHUB_ORGANIZATIONS_0_PERSONAL_ACCESS_TOKEN_VALUE"
+            - name: "REPO_FINDERS_GITHUB_ORGANIZATIONS_0_ACCESS_TOKEN_VALUE"
               valueFrom:
                 secretKeyRef:
                   name: "kronicle-service-config"
                   key: "github-repo-finder-personal-access-token"
-            - name: "REPO_FINDERS_GITHUB_ORGANIZATIONS_1_PERSONAL_ACCESS_TOKEN_USERNAME"
+            - name: "REPO_FINDERS_GITHUB_ORGANIZATIONS_1_ACCESS_TOKEN_USERNAME"
               valueFrom:
                 secretKeyRef:
                   name: "kronicle-service-config"
                   key: "github-repo-finder-username"
-            - name: "REPO_FINDERS_GITHUB_ORGANIZATIONS_1_PERSONAL_ACCESS_TOKEN_VALUE"
+            - name: "REPO_FINDERS_GITHUB_ORGANIZATIONS_1_ACCESS_TOKEN_VALUE"
               valueFrom:
                 secretKeyRef:
                   name: "kronicle-service-config"
