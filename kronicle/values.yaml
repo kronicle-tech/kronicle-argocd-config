@@ -56,15 +56,15 @@ kronicle:
       SONARQUBE_BASE_URL: https://sonarcloud.io
       SONARQUBE_ORGANIZATIONS_0: kronicle-tech
     secrets:
-      REPO_FINDERS_GITHUB_ORGANIZATIONS_0_PERSONAL_ACCESS_TOKEN_USERNAME:
+      REPO_FINDERS_GITHUB_ORGANIZATIONS_0_ACCESS_TOKEN_USERNAME:
         secretName: kronicle-service-config
         secretKey: github-repo-finder-username
-      REPO_FINDERS_GITHUB_ORGANIZATIONS_0_PERSONAL_ACCESS_TOKEN_VALUE:
+      REPO_FINDERS_GITHUB_ORGANIZATIONS_0_ACCESS_TOKEN_VALUE:
         secretName: kronicle-service-config
         secretKey: github-repo-finder-personal-access-token
-      REPO_FINDERS_GITHUB_ORGANIZATIONS_1_PERSONAL_ACCESS_TOKEN_USERNAME:
+      REPO_FINDERS_GITHUB_ORGANIZATIONS_1_ACCESS_TOKEN_USERNAME:
         secretName: kronicle-service-config
         secretKey: github-repo-finder-username
-      REPO_FINDERS_GITHUB_ORGANIZATIONS_1_PERSONAL_ACCESS_TOKEN_VALUE:
+      REPO_FINDERS_GITHUB_ORGANIZATIONS_1_ACCESS_TOKEN_VALUE:
         secretName: kronicle-service-config
         secretKey: github-repo-finder-personal-access-token
