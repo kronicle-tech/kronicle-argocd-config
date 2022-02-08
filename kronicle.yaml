@@ -1,45 +1,7 @@
 # This file is read automatically by Kronicle https://kronicle.tech
 
-componentTypes:
-
-  - id: helm-chart
-    description: |
-      A [Helm Chart](https://helm.sh/docs/topics/charts/)
-
-  - id: kubernetes-controller
-    description: |
-      A [Kubernetes controller](https://kubernetes.io/docs/concepts/architecture/controller/)
-
-  - id: managed-service
-    description: |
-      A managed service is typically a software capability - a queue, database, search index etc. - that is hosted and
-      managed by a third party (e.g. a cloud provider)
-
-  - id: webapp
-    description:
-      A webapp is a web-based application that servers web pages and/or web APIs over HTTP/HTTPS
-
-  - id: certificate-authority
-    description:
-      A [certificate authority](https://en.wikipedia.org/wiki/Certificate_authority) is an organisation or company
-      that issues digital certificates, including those used for TLS/HTTPS
-
-platforms:
-
-  - id: kubernetes
-    description: |
-      A [microk8s](https://microk8s.io)-based [Kubernetes (k8s)](https://kubernetes.io) single node cluster
-
-  - id: aws-managed-service
-    description: |
-      A service managed by [AWS](https://aws.amazon.com)
-
-  - id: external
-    description: |
-      Am external platform that is outside of and used by the Demo environment
 
 components:
-
   - id: argocd
     name: Argo CD
     typeId: kubernetes-controller
