@@ -133,3 +133,38 @@ components:
     dependencies:
       - targetComponentId: kronicle-service
         direction: inbound
+
+  - id: sonarcloud
+    name: Sonarcloud
+    typeId: managed-service
+    description: |
+      [SonarCloud](https://sonarcloud.io) holds the unit test code coverage metric for the 
+      [Kronicle codebase](https://github.com/kronicle-tech/kronicle).
+    repo:
+      url: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    teams:
+      - teamId: kronicle-project
+        description: |
+          The Kroncile Project maintains the SonarCloud account for the Kronicle codebases
+    platformId: external
+    links:
+      - url: https://sonarcloud.io
+        description: |
+          The SonarCloud website
+
+  - id: sonarcloud
+    name: Sonarcloud
+    typeId: managed-service
+    description: |
+      [GitHub](https://github.com) hosts the Git repos the Kronicle project
+    repo:
+      url: https://github.com/kronicle-tech/kronicle-argocd-config.git
+    teams:
+      - teamId: kronicle-project
+        description: |
+          The Kroncile Project maintains [Kronicle's GitHub organization](https://github.com/kronicle-tech)
+    platformId: external
+    links:
+      - url: https://github.com
+        description: |
+          The GitHub website
