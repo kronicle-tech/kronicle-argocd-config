@@ -152,8 +152,8 @@ components:
         description: |
           The SonarCloud website
 
-  - id: sonarcloud
-    name: Sonarcloud
+  - id: github
+    name: GitHub
     typeId: managed-service
     description: |
       [GitHub](https://github.com) hosts the Git repos the Kronicle project
