@@ -12,7 +12,7 @@ import tech.kronicle.KronicleMetadataValidator
 
 tasks.register("validateKronicleMetadata") {
     doLast {
-        KronicleMetadataValidator.validate(file("kronicle.yaml"))
+        KronicleMetadataValidator.validate(file("archived-kronicle.yaml"))
     }
 }
 
